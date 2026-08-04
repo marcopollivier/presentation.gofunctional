@@ -1,6 +1,7 @@
-package main
+package gofunctional
 
 import (
+	"slices"
 	"testing"
 )
 
@@ -8,27 +9,36 @@ func TestSortNative(t *testing.T) {
 	data := []int{3, 1, 4, 1, 5, 9}
 	SortNative(data)
 	expected := []int{1, 1, 3, 4, 5, 9}
-	for i, v := range expected {
-		if data[i] != v {
-			t.Errorf("sortNative() = %v; want %v", data, expected)
-		}
+	if !slices.Equal(data, expected) {
+		t.Errorf("SortNative() = %v; want %v", data, expected)
 	}
 }
 
 func TestSortImmutable(t *testing.T) {
-	data := []int{3, 1, 4, 1, 5, 9}
-	sortedData := SortImmutable(data)
-	expected := []int{1, 1, 3, 4, 5, 9}
-	for i, v := range expected {
-		if sortedData[i] != v {
-			t.Errorf("sortImmutable() = %v; want %v", sortedData, expected)
-		}
+	original := []int{3, 1, 4, 1, 5, 9}
+	data := slices.Clone(original)
+
+	sorted := SortImmutable(data)
+
+	if want := []int{1, 1, 3, 4, 5, 9}; !slices.Equal(sorted, want) {
+		t.Errorf("SortImmutable() = %v; want %v", sorted, want)
 	}
-	// Verifica se a coleção original não foi alterada
-	for i, v := range data {
-		if v != []int{3, 1, 4, 1, 5, 9}[i] {
-			t.Errorf("sortImmutable() modified original slice; got %v, want %v", data, []int{3, 1, 4, 1, 5, 9})
-			break
-		}
+	// A coleção original não pode ter sido alterada — é o contrato funcional.
+	if !slices.Equal(data, original) {
+		t.Errorf("SortImmutable() mutou o slice original; got %v, want %v", data, original)
+	}
+}
+
+func TestSortLazy(t *testing.T) {
+	original := []int{3, 1, 4, 1, 5, 9}
+	data := slices.Clone(original)
+
+	sorted := SortLazy(data)
+
+	if want := []int{1, 1, 3, 4, 5, 9}; !slices.Equal(sorted, want) {
+		t.Errorf("SortLazy() = %v; want %v", sorted, want)
+	}
+	if !slices.Equal(data, original) {
+		t.Errorf("SortLazy() mutou o slice original; got %v, want %v", data, original)
 	}
 }

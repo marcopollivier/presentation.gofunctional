@@ -1,4 +1,4 @@
-package main
+package gofunctional
 
 import (
 	"errors"
@@ -50,27 +50,41 @@ func TestCompose(t *testing.T) {
 		expected int
 	}{
 		{
-			func() (int, error) { return AddOne(1) },
-			func() (int, error) { return Double(2) },
-			3, // 2 + 4 = 6
+			func() (int, error) { return AddOne(1) }, // 2
+			func() (int, error) { return Double(2) }, // 4
+			6,                                         // 2 + 4 = 6 (o teste de 2023 esperava 3, e por isso falhava)
 		},
 		{
 			func() (int, error) { return AddOne(1) },
 			func() (int, error) { return Double(0) },
-			0, // Error in second function
+			0, // erro na segunda função
 		},
 		{
 			func() (int, error) { return AddOne(0) },
 			func() (int, error) { return Double(2) },
-			0, // Error in first function
+			0, // erro na primeira função
 		},
 	}
 
 	for _, tt := range tests {
 		resultFunc := Compose(tt.f, tt.g)
-		result := resultFunc()
-		if result != tt.expected {
+		if result := resultFunc(); result != tt.expected {
 			t.Errorf("Compose() = %d; want %d", result, tt.expected)
 		}
+	}
+}
+
+func TestComposeFn(t *testing.T) {
+	// (Double ∘ AddOne)(3) = Double(AddOne(3)) = Double(4) = 8
+	pipeline := ComposeFn(AddOne, Double)
+
+	got, err := pipeline(3)
+	if err != nil || got != 8 {
+		t.Errorf("ComposeFn(AddOne, Double)(3) = %d, %v; want 8, nil", got, err)
+	}
+
+	// O erro do primeiro estágio corta o pipeline (curto-circuito).
+	if _, err := pipeline(0); err == nil {
+		t.Error("ComposeFn deveria propagar o erro de AddOne(0)")
 	}
 }
