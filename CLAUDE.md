@@ -26,22 +26,59 @@ Isso muda os critérios de qualidade:
 - **Não apague o material de 2023.** O "antes" está na tag `v1-devpr24` e é a
   evidência do arco antes/depois. Onde o contraste é o conteúdo do slide, o
   "antes" aparece inline (ex.: `loopvar.go`).
+- **Escreva em pt-BR.** Comentários, docs e mensagens de commit são em
+  português — é o idioma da palestra. Identificadores em inglês, como em Go.
+
+### Os contra-exemplos são conteúdo — não "conserte" nenhum
+
+Boa parte deste repo é deliberadamente "errada": é o lado esquerdo do slide.
+Um agente que aplica as regras de estilo abaixo sem ler isto vai refatorar o
+material da palestra e destruir o contraste. **Nenhum destes deve ser
+corrigido, unificado ou tornado puro:**
+
+| Anti-exemplo | Por que existe |
+|--|--|
+| `reviewability.go` — `var accumulator` global | viola a regra 1 **de propósito**; é o slide de revisibilidade |
+| `loopvar.go` — `LoopVarShared` | reproduz o footgun pré-1.22 via ponteiro; deve devolver `[3 3 3]` |
+| `sort.go` — `SortNative` muta in-place | a comparação entre as três variantes É o benchmark |
+| `iterators.go` — `SumSquaresOfEvensSlices` | materializa slices para medir o custo que o bench de 2023 confundia com "o preço do paradigma" |
+| `composition.go` — `Compose` (eager) | a resposta de 2023; `ComposeFn` é a de hoje. Ambas ficam |
+| `option_pre127.go` — funções de pacote | o "antes" do 1.27; a escada de variáveis em `HalfIfEven` é o ponto |
+| `evolution-127/ceiling_hkt.go` | **não compila de propósito** (`//go:build ignore`) |
+
+Em caso de dúvida, o comentário no topo de cada arquivo explica o papel dele.
+Se um exemplo parece ingênuo ou "consertável", leia o comentário antes de mexer.
 
 ## Comandos
 
 ```bash
 go test ./...                          # roda todos os testes (módulo raiz)
 go test -run TestCompose ./...         # um teste por nome
+go test -run 'TestSort.*' -v ./...     # um grupo por regex, verboso
 go vet ./...                           # análise estática
+make all                               # vet + test + bench-sort (verificação completa)
 make bench                             # todos os benchmarks com alocação
 make bench-sort                        # só o benchmark de ordenação (achado central)
 make benchstat                         # roda N vezes e resume com benchstat
 make evolution                         # exemplos Go 1.27 (baixa o toolchain RC)
 ```
 
+Os alvos de bench aceitam `BENCHTIME` (default `300ms`) e `COUNT` (default `6`):
+`make benchstat COUNT=10`. `make benchstat` exige
+`go install golang.org/x/perf/cmd/benchstat@latest` e escreve `bench.txt` na
+raiz — artefato local, não commite (não há `.gitignore` no repo).
+
+Para demonstrar o teto de HKT no palco (o erro do compilador **é** o slide):
+
+```bash
+cd evolution-127 && GOTOOLCHAIN=auto go build ceiling_hkt.go
+# interface method must have no type parameters
+```
+
 **Módulo raiz:** Go 1.26 (`go.mod`, módulo `gofunctional`). Depende de
 `github.com/IBM/fp-go/v2`. **Submódulo `evolution-127/`:** Go 1.27 (RC),
-isolado de propósito — rode com `GOTOOLCHAIN=auto`.
+isolado de propósito — rode com `GOTOOLCHAIN=auto`. Os dois módulos são
+separados: `go test ./...` na raiz **não** alcança `evolution-127/`.
 
 ## Regras de estilo (spec do projeto — e slide)
 
