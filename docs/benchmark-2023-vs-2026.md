@@ -48,7 +48,7 @@ ordenado". Eu escrevi esse bug sozinho em 2023. Um agente escreveria o mesmo bug
 em 2026, só que mais rápido e em mais lugares. Não é o agente que resolve isso;
 é o paradigma que torna a classe de erro impossível de escrever.
 
-## A metodologia nova (`sort_bench_test.go`)
+## A metodologia nova (`exemplos/07-benchmark-sort/sort_bench_test.go`)
 
 - Cada tamanho roda o **seu** tamanho: 5, 1k, 10k, 1M de verdade (subbenchmarks).
 - Todos recebem input **desordenado e fresco a cada iteração**, e a restauração
@@ -104,7 +104,7 @@ em 2026, só que mais rápido e em mais lugares. Não é o agente que resolve is
   slice. Ótimo para o palco: nem todo caminho "funcional" é grátis; é preciso
   medir.
 
-E o contraponto que fecha o argumento de 2023 (ver `iterators.go`): quando a
+E o contraponto que fecha o argumento de 2023 (ver `exemplos/03-iterators/iterators.go`): quando a
 operação **não** precisa materializar (map/filter/reduce que colapsa num
 escalar), o pipeline lazy aloca **zero** e é mais rápido:
 

@@ -1,4 +1,4 @@
-package gofunctional
+package agentes
 
 // Bloco "paradigma na era dos agentes": o contraste de revisibilidade.
 //

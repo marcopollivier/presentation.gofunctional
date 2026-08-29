@@ -1,4 +1,4 @@
-package gofunctional
+package loopvar
 
 // Go 1.22 — variável de loop por iteração.
 //

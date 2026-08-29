@@ -29,26 +29,26 @@ isso importa na era dos agentes.
 - **[mantém]** Base matemática: `f(x) = x² + 3`. Contrato / entrada /
   processamento / saída. Evitar mudança de estado.
 - **[mantém]** Funções puras e imutabilidade como definição.
-- _Sustenta:_ `composition.go` (`AddOne`, `Double`, `ComposeFn` como `g∘f`).
+- _Sustenta:_ `exemplos/01-paradigma/composition.go` (`AddOne`, `Double`, `ComposeFn` como `g∘f`).
 
 ## Bloco 3 — O que o Go me deu desde 2023 (12 min)
 
 O coração da versão nova. Um exemplo rodando por release.
 
 - **[inédito] Loop var (1.22).** O footgun de 12 anos que sumiu. Antes/depois.
-  - _Sustenta:_ `loopvar.go` — `[0 1 2]` vs `[3 3 3]`.
+  - _Sustenta:_ `exemplos/02-loopvar/loopvar.go` — `[0 1 2]` vs `[3 3 3]`.
 - **[muda] Coleções (1.23).** Em 2023 esse era "o primeiro problema": map/filter
   custava copiar a coleção. Iterators lazy mudam a conclusão.
-  - _Sustenta:_ `iterators.go` + benchmark `SumSquares*` (lazy: 0 alloc; slices:
+  - _Sustenta:_ `exemplos/03-iterators/iterators.go` + benchmark `SumSquares*` (lazy: 0 alloc; slices:
     169 KB / 17 allocs).
 - **[inédito] fp-go v2 (1.24).** Generic type aliases destravaram a lib.
   `Result[T] = Either[error, T]`. Estilo `Pipe`.
-  - _Sustenta:_ `fpgo_example.go`.
+  - _Sustenta:_ `exemplos/04-fpgo/fpgo_example.go`.
 - **[muda] Concorrência (1.25).** Em 2023 "concorrência combina com funcional"
   era percepção pessoal. `synctest` torna testável e determinístico.
-  - _Sustenta:_ `concurrency_synctest_test.go`.
+  - _Sustenta:_ `exemplos/05-concorrencia/concurrency_synctest_test.go`.
 - **[inédito] Métodos genéricos (1.27).** `Option` à mão vira encadeável.
-  - _Sustenta:_ `option_pre127.go` (antes, `Pipe`) vs
+  - _Sustenta:_ `exemplos/06-option/option_pre127.go` (antes, `Pipe`) vs
     `evolution-127/option.go` (depois, `x.Chain(f).Map(g)`).
 
 ## Bloco 4 — O benchmark que me traiu (8 min)
@@ -59,7 +59,7 @@ O coração da versão nova. Um exemplo rodando por release.
 - **[inédito] O reframe:** o benchmark que "provava" mutabilidade foi corrompido
   por mutabilidade. Classe de erro inexpressável na versão pura. **Ponte para o
   Bloco 6.**
-- _Sustenta:_ `sort_bench_test.go`, `docs/benchmark-2023-vs-2026.md`,
+- _Sustenta:_ `exemplos/07-benchmark-sort/sort_bench_test.go`, `docs/benchmark-2023-vs-2026.md`,
   `git checkout v1-devpr24` para mostrar o código antigo.
 
 ## Bloco 5 — O teto (4 min)
@@ -83,7 +83,7 @@ O coração da versão nova. Um exemplo rodando por release.
      tem que escrever as regras (`CLAUDE.md`, linters, testes).
 - **[inédito]** O `CLAUDE.md` deste repo projetado: o paradigma virou spec de
   máquina.
-- _Sustenta:_ `reviewability.go` (contraste no palco), `CLAUDE.md`,
+- _Sustenta:_ `exemplos/08-agentes/reviewability.go` (contraste no palco), `CLAUDE.md`,
   `docs/paradigma-e-agentes.md`, `experiments/agent-eval/`.
 
 ## Bloco 7 — Conclusão (3 min)

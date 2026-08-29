@@ -1,4 +1,4 @@
-package gofunctional
+package iterators
 
 import "testing"
 

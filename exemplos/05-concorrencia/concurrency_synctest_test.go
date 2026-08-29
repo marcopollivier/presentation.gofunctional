@@ -1,4 +1,4 @@
-package gofunctional
+package concorrencia
 
 import (
 	"sync"

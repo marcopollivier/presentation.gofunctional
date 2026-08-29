@@ -1,4 +1,4 @@
-package gofunctional
+package option
 
 // Option[T] à mão — a versão PRÉ-1.27, o "antes" do divisor de águas.
 //
