@@ -60,7 +60,7 @@ make all                               # vet + test + bench-sort (verificação 
 make bench                             # todos os benchmarks com alocação
 make bench-sort                        # só o benchmark de ordenação (achado central)
 make benchstat                         # roda N vezes e resume com benchstat
-make evolution                         # exemplos Go 1.27 (baixa o toolchain RC)
+make evolution                         # exemplos do submódulo (métodos genéricos)
 ```
 
 Os alvos de bench aceitam `BENCHTIME` (default `300ms`) e `COUNT` (default `6`):
@@ -71,14 +71,20 @@ raiz — artefato local, não commite (não há `.gitignore` no repo).
 Para demonstrar o teto de HKT no palco (o erro do compilador **é** o slide):
 
 ```bash
-cd evolution-127 && GOTOOLCHAIN=auto go build ceiling_hkt.go
+cd evolution-127 && go build ceiling_hkt.go
 # interface method must have no type parameters
 ```
 
-**Módulo raiz:** Go 1.26 (`go.mod`, módulo `gofunctional`). Depende de
-`github.com/IBM/fp-go/v2`. **Submódulo `evolution-127/`:** Go 1.27 (RC),
-isolado de propósito — rode com `GOTOOLCHAIN=auto`. Os dois módulos são
-separados: `go test ./...` na raiz **não** alcança `evolution-127/`.
+**Módulo raiz:** Go 1.27 (`go.mod`, módulo `gofunctional`). Depende de
+`github.com/IBM/fp-go/v2`. **Submódulo `evolution-127/`:** também Go 1.27. Os
+dois módulos são separados: `go test ./...` na raiz **não** alcança
+`evolution-127/` — use `make evolution`.
+
+A separação **não** é mais por versão (o 1.27 saiu em ago/2026 e a raiz subiu
+junto): `evolution-127/` redeclara `Option[T]`, `Some`, `None` e `HalfIfEven`
+para mostrar o "depois" com métodos genéricos, e os mesmos nomes estão em
+`option_pre127.go` como o "antes". O par só coexiste em pacotes separados — a
+colisão é a demonstração. Não funda os dois.
 
 ## Regras de estilo (spec do projeto — e slide)
 
@@ -110,7 +116,7 @@ não deixou de ser necessária; ela mudou de função.
 
 ## Estrutura
 
-**Módulo raiz (Go 1.26):**
+**Módulo raiz (Go 1.27):**
 
 - `composition.go` — funções puras e function composition. `Compose` (versão
   eager de 2023, preservada como didática) e `ComposeFn` (a composição

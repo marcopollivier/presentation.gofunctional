@@ -83,6 +83,13 @@ em 2026, só que mais rápido e em mais lugares. Não é o agente que resolve is
 > Números de uma execução; para a versão de slide, rode `make benchstat`
 > (`-count=6`) e use o resumo com variância.
 
+> ⚠️ **Medidos no go1.26.0, antes de o módulo subir para 1.27.** Uma execução de
+> conferência no go1.27.0 deu números sensivelmente melhores no caso grande
+> (`SortNative/1M` ~54,8M ns/op contra os 69,0M da tabela), mas as **conclusões
+> não mudam**: nativo continua 0 alloc, imutável continua 1 alloc do tamanho do
+> slice, lazy continua alocando mais. Antes do palco, re-rode `make benchstat` no
+> 1.27 e substitua a tabela — não copie os números acima como se fossem atuais.
+
 ## A conclusão nova — honesta, não binária
 
 - **O tempo agora escala com o tamanho.** 5 e 1k não são mais idênticos. O bug

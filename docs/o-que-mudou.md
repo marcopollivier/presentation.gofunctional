@@ -73,7 +73,7 @@ do custo relativo da abordagem imutável baseada em cópia:
 
 - Release notes: https://go.dev/doc/go1.26
 
-## Go 1.27 — ago/2026 (RC na escrita) — métodos genéricos
+## Go 1.27 — ago/2026 (lançado) — métodos genéricos
 
 **O divisor de águas para a conclusão da palestra.** Um método pode declarar
 seus próprios parâmetros de tipo. Antes, `func (o Option[A]) Map[B](f func(A) B) Option[B]`
@@ -97,7 +97,7 @@ de 80 bytes ficam até ~30% mais baratas — mas as próprias release notes esti
 o impacto em programas reais em **~1%**. Nada de exagerar isso no palco.
 
 - Exemplo no repo: `evolution-127/option.go`, `evolution-127/ceiling_hkt.go`
-- Release notes (draft): https://go.dev/doc/go1.27
+- Release notes: https://go.dev/doc/go1.27
 - Proposta de métodos genéricos: https://go.dev/issue/49085
 
 ---
