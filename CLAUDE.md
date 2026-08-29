@@ -21,11 +21,12 @@ Isso muda os critérios de qualidade:
 - **Clareza didática > abstração.** Um exemplo que cabe num slide e é lido em
   voz alta vale mais que um genérico e "elegante".
 - **Cada exemplo é autocontido, curto e projetável.** Nada de over-engineering.
-- **Nomes de arquivo mapeiam seções da palestra** (`loopvar.go`, `iterators.go`,
-  `sort.go`, `option_pre127.go`, `fpgo_example.go`, `reviewability.go`).
+- **Um pacote por ponto da palestra, numerado na ordem do palco.** `exemplos/`
+  vai de `01-paradigma` a `08-agentes`; o número é a posição na narrativa, não
+  uma hierarquia. Ao mexer na ordem dos slides, renumere junto.
 - **Não apague o material de 2023.** O "antes" está na tag `v1-devpr24` e é a
   evidência do arco antes/depois. Onde o contraste é o conteúdo do slide, o
-  "antes" aparece inline (ex.: `loopvar.go`).
+  "antes" aparece inline (ex.: `exemplos/02-loopvar/loopvar.go`).
 - **Escreva em pt-BR.** Comentários, docs e mensagens de commit são em
   português — é o idioma da palestra. Identificadores em inglês, como em Go.
 
@@ -38,13 +39,15 @@ corrigido, unificado ou tornado puro:**
 
 | Anti-exemplo | Por que existe |
 |--|--|
-| `reviewability.go` — `var accumulator` global | viola a regra 1 **de propósito**; é o slide de revisibilidade |
-| `loopvar.go` — `LoopVarShared` | reproduz o footgun pré-1.22 via ponteiro; deve devolver `[3 3 3]` |
-| `sort.go` — `SortNative` muta in-place | a comparação entre as três variantes É o benchmark |
-| `iterators.go` — `SumSquaresOfEvensSlices` | materializa slices para medir o custo que o bench de 2023 confundia com "o preço do paradigma" |
-| `composition.go` — `Compose` (eager) | a resposta de 2023; `ComposeFn` é a de hoje. Ambas ficam |
-| `option_pre127.go` — funções de pacote | o "antes" do 1.27; a escada de variáveis em `HalfIfEven` é o ponto |
+| `08-agentes/reviewability.go` — `var accumulator` global | viola a regra 1 **de propósito**; é o slide de revisibilidade |
+| `02-loopvar/loopvar.go` — `LoopVarShared` | reproduz o footgun pré-1.22 via ponteiro; deve devolver `[3 3 3]` |
+| `07-benchmark-sort/sort.go` — `SortNative` muta in-place | a comparação entre as três variantes É o benchmark |
+| `03-iterators/iterators.go` — `SumSquaresOfEvensSlices` | materializa slices para medir o custo que o bench de 2023 confundia com "o preço do paradigma" |
+| `01-paradigma/composition.go` — `Compose` (eager) | a resposta de 2023; `ComposeFn` é a de hoje. Ambas ficam |
+| `06-option/option_pre127.go` — funções de pacote | o "antes" do 1.27; a escada de variáveis em `HalfIfEven` é o ponto |
 | `evolution-127/ceiling_hkt.go` | **não compila de propósito** (`//go:build ignore`) |
+
+(Caminhos relativos a `exemplos/`, exceto o último.)
 
 Em caso de dúvida, o comentário no topo de cada arquivo explica o papel dele.
 Se um exemplo parece ingênuo ou "consertável", leia o comentário antes de mexer.
@@ -83,8 +86,8 @@ dois módulos são separados: `go test ./...` na raiz **não** alcança
 A separação **não** é mais por versão (o 1.27 saiu em ago/2026 e a raiz subiu
 junto): `evolution-127/` redeclara `Option[T]`, `Some`, `None` e `HalfIfEven`
 para mostrar o "depois" com métodos genéricos, e os mesmos nomes estão em
-`option_pre127.go` como o "antes". O par só coexiste em pacotes separados — a
-colisão é a demonstração. Não funda os dois.
+`exemplos/06-option/` como o "antes". O par só coexiste em pacotes separados —
+a colisão é a demonstração. Não funda os dois.
 
 ## Regras de estilo (spec do projeto — e slide)
 
@@ -116,30 +119,36 @@ não deixou de ser necessária; ela mudou de função.
 
 ## Estrutura
 
-**Módulo raiz (Go 1.27):**
+**Módulo raiz (Go 1.27)** — um pacote por ponto da palestra, em `exemplos/`,
+numerados na ordem do palco. O índice de estudo é `exemplos/README.md`.
 
-- `composition.go` — funções puras e function composition. `Compose` (versão
-  eager de 2023, preservada como didática) e `ComposeFn` (a composição
-  matemática de verdade, `g∘f`, lazy).
-- `sort.go` — contraste de mutabilidade, base do benchmark. `SortNative`
-  (muta in-place, via `slices.Sort`), `SortImmutable` (`slices.Clone` + sort),
-  `SortLazy` (`slices.Sorted(slices.Values(...))` — o "sort imutável" de 2023
-  agora numa linha da stdlib). **Mantenha as três variantes** — a comparação é
-  o conteúdo.
-- `sort_bench_test.go` — benchmark refeito com metodologia correta
-  (`testing.B.Loop`, tamanhos reais, input fresco por iteração). O comentário
-  no topo documenta por que o benchmark de 2023 estava furado.
-- `loopvar.go` — Go 1.22, variável de loop por iteração (antes/depois inline).
-- `iterators.go` — Go 1.23, `iter.Seq` e pipeline lazy map/filter/reduce; a
-  versão lazy vs a que materializa slices (ataca a conclusão do bench de
-  coleções de 2023).
-- `option_pre127.go` — `Option[T]` à mão, operações como **funções de pacote**
-  (o "antes" do 1.27, sem encadeamento).
-- `fpgo_example.go` — `Result`/`Either` com `IBM/fp-go` v2 (estilo `Pipe`).
-- `concurrency_synctest_test.go` — Go 1.25, teste determinístico de código
-  concorrente (`testing/synctest`).
-- `reviewability.go` — duas implementações da mesma lógica, pura vs estado
-  compartilhado, para o contraste de revisibilidade no palco.
+- `01-paradigma/` (`package paradigma`) — funções puras e function composition.
+  `Compose` (versão eager de 2023, preservada como didática) e `ComposeFn` (a
+  composição matemática de verdade, `g∘f`, lazy).
+- `02-loopvar/` (`package loopvar`) — Go 1.22, variável de loop por iteração
+  (antes/depois inline).
+- `03-iterators/` (`package iterators`) — Go 1.23, `iter.Seq` e pipeline lazy
+  map/filter/reduce; a versão lazy vs a que materializa slices (ataca a
+  conclusão do bench de coleções de 2023).
+- `04-fpgo/` (`package fpgo`) — `Result`/`Either` com `IBM/fp-go` v2 (estilo
+  `Pipe`).
+- `05-concorrencia/` (`package concorrencia`) — Go 1.25, teste determinístico
+  de código concorrente (`testing/synctest`). Só tem arquivo `_test.go`, de
+  propósito: o exemplo **é** o teste.
+- `06-option/` (`package option`) — `Option[T]` à mão, operações como **funções
+  de pacote** (o "antes" do 1.27, sem encadeamento).
+- `07-benchmark-sort/` (`package ordenacao`) — contraste de mutabilidade e o
+  benchmark. `SortNative` (muta in-place, via `slices.Sort`), `SortImmutable`
+  (`slices.Clone` + sort), `SortLazy` (`slices.Sorted(slices.Values(...))` — o
+  "sort imutável" de 2023 agora numa linha da stdlib). **Mantenha as três
+  variantes** — a comparação é o conteúdo. O `sort_bench_test.go` traz a
+  metodologia correta (`testing.B.Loop`, tamanhos reais, input fresco por
+  iteração) e o comentário no topo documenta por que o de 2023 estava furado.
+- `08-agentes/` (`package agentes`) — duas implementações da mesma lógica, pura
+  vs estado compartilhado, para o contraste de revisibilidade no palco.
+
+O nome do diretório tem número e hífen; o do pacote, não (Go não permite). Essa
+divergência é intencional — o número serve à narrativa, não ao compilador.
 
 **Submódulo `evolution-127/` (Go 1.27):**
 

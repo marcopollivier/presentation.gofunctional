@@ -17,7 +17,7 @@ lendo o último valor) deixou de existir. Uma mudança de semântica de 12 anos,
 feita para acomodar closures dentro de loops — o pré-requisito de map/filter/
 reduce com funções.
 
-- Exemplo no repo: `loopvar.go`
+- Exemplo no repo: `exemplos/02-loopvar/loopvar.go`
 - Release notes: https://go.dev/doc/go1.22
 - Discussão de design: https://go.dev/blog/loopvar-preview
 
@@ -32,7 +32,7 @@ benchmark de coleções de 2023, cujo custo medido era o de **copiar a coleção
 Também entrou o pacote `unique` (interning), que conversa com semântica de valor
 e imutabilidade.
 
-- Exemplo no repo: `iterators.go`, `sort.go` (`SortLazy`)
+- Exemplo no repo: `exemplos/03-iterators/iterators.go`, `exemplos/07-benchmark-sort/sort.go` (`SortLazy`)
 - Release notes: https://go.dev/doc/go1.23
 - Iterators: https://go.dev/blog/range-functions
 
@@ -44,7 +44,7 @@ e imutabilidade.
   mantém parâmetros e resultados vivos (evita dead-code elimination) e conta as
   iterações sozinho.
 
-- Exemplo no repo: `fpgo_example.go`, todos os benchmarks (`for b.Loop()`)
+- Exemplo no repo: `exemplos/04-fpgo/fpgo_example.go`, todos os benchmarks (`for b.Loop()`)
 - Release notes: https://go.dev/doc/go1.24
 - `B.Loop`: https://go.dev/blog/testing-b-loop
 
@@ -57,7 +57,7 @@ argumento "concorrência + testabilidade" que em 2023 estava só na percepção
 pessoal. (O pacote foi experimental no 1.24, sob `GOEXPERIMENT=synctest`, e
 estabilizou no 1.25 como `testing/synctest`, com a API `synctest.Test`.)
 
-- Exemplo no repo: `concurrency_synctest_test.go`
+- Exemplo no repo: `exemplos/05-concorrencia/concurrency_synctest_test.go`
 - Release notes: https://go.dev/doc/go1.25
 
 ## Go 1.26 — fev/2026 — (o release que o brief pulou)

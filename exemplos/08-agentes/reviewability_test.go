@@ -1,4 +1,4 @@
-package gofunctional
+package agentes
 
 import (
 	"slices"

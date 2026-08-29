@@ -22,7 +22,7 @@ acontecer. Função com efeito colateral implícito exige que você leia o resto
 sistema para saber se está certa. Quando o volume de código gerado sobe, o custo
 de revisão vira o fator dominante, e pureza é redução direta desse custo.
 
-_No repo:_ `reviewability.go` — `MovingAveragePure` vs `MovingAverageStateful`,
+_No repo:_ `exemplos/08-agentes/reviewability.go` — `MovingAveragePure` vs `MovingAverageStateful`,
 a mesma lógica, uma revisável isoladamente e a outra não.
 
 ### 2. Testabilidade é o loop de feedback do agente
@@ -33,7 +33,7 @@ permite o agente se autocorrigir. Código com estado compartilhado exige mock e
 setup; o agente erra mais e você percebe menos.
 
 _No repo:_ `reviewability_test.go` (table-driven sem setup) e
-`concurrency_synctest_test.go` (concorrência testada de forma determinística).
+`exemplos/05-concorrencia/concurrency_synctest_test.go` (concorrência testada de forma determinística).
 
 ### 3. Tipos são o revisor que não cansa
 
@@ -41,8 +41,8 @@ Erro explícito no tipo de retorno (`(T, error)`, `Result[T]`) faz o agente não
 conseguir "esquecer" o caminho de falha. É guardrail de máquina, não convenção
 social.
 
-_No repo:_ `composition.go` (erro no retorno), `fpgo_example.go` e
-`option_pre127.go` / `evolution-127/option.go` (o erro/ausência vive no tipo).
+_No repo:_ `exemplos/01-paradigma/composition.go` (erro no retorno), `exemplos/04-fpgo/fpgo_example.go` e
+`exemplos/06-option/option_pre127.go` / `evolution-127/option.go` (o erro/ausência vive no tipo).
 
 ### 4. Imutabilidade limita o raio de dano
 
@@ -50,7 +50,7 @@ Se o agente altera uma função pura, o impacto é local. Se altera uma struct
 mutável compartilhada, o impacto é o programa. Isso sempre foi verdade — só
 passou a importar muito mais quando o número de mudanças por dia multiplicou.
 
-_No repo:_ `sort.go` (variantes que copiam vs a que muta) e o próprio
+_No repo:_ `exemplos/07-benchmark-sort/sort.go` (variantes que copiam vs a que muta) e o próprio
 post-mortem do benchmark.
 
 ### 5. Composição dá tarefas do tamanho certo
@@ -59,7 +59,7 @@ Agente vai melhor com escopo pequeno e contrato claro. Arquitetura feita de
 funções pequenas e componíveis produz isso naturalmente; um método de 300 linhas
 com sete responsabilidades, não.
 
-_No repo:_ `iterators.go` (pipeline de funções pequenas), `composition.go`.
+_No repo:_ `exemplos/03-iterators/iterators.go` (pipeline de funções pequenas), `exemplos/01-paradigma/composition.go`.
 
 ### 6. O contra-argumento honesto — o corpus de treino
 

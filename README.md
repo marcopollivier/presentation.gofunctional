@@ -25,17 +25,18 @@ forçação de barra foi morar.
 - **Módulo raiz:** Go **1.27**. Dependência: `github.com/IBM/fp-go/v2`.
 - **Submódulo `evolution-127/`:** também Go **1.27**. Continua separado não por
   versão, mas porque **redeclara** `Option[T]`/`Some`/`None`/`HalfIfEven` para
-  mostrar o "depois" — os mesmos nomes que `option_pre127.go` usa para o
+  mostrar o "depois" — os mesmos nomes que `exemplos/06-option/` usa para o
   "antes". O par só coexiste em pacotes distintos.
 
 ## Como rodar
 
 ```bash
-go test ./...            # todos os testes do módulo raiz
-go vet ./...             # análise estática
-make bench-sort          # o benchmark central (ordenação)
-make benchstat           # roda N vezes e resume (requer benchstat)
-make evolution           # exemplos do submódulo (métodos genéricos, 1.27)
+go test ./...                      # todos os testes do módulo raiz
+go test ./exemplos/03-iterators/   # só um exemplo
+go vet ./...                       # análise estática
+make bench-sort                    # o benchmark central (ordenação)
+make benchstat                     # roda N vezes e resume (requer benchstat)
+make evolution                     # exemplos do submódulo (métodos genéricos, 1.27)
 ```
 
 Para ver o benchmark de 2023 (com o bug) e comparar com o de hoje:
@@ -46,21 +47,24 @@ go test -bench=Sort ./...
 git checkout main
 ```
 
-## Índice — arquivo → conceito
+## Índice — um pacote por ponto da palestra
 
-| Arquivo | Conceito | Release |
+Os exemplos ficam em [`exemplos/`](exemplos/), numerados **na ordem do palco**.
+Cada pasta é autocontida: abra uma, leia o comentário do topo e rode os testes.
+O roteiro de estudo detalhado está em [`exemplos/README.md`](exemplos/README.md).
+
+| Pasta | Conceito | Release |
 |--|--|--|
-| `composition.go` | Funções puras e function composition (`Compose`, `ComposeFn`) | — |
-| `sort.go` | Mutável vs imutável vs lazy (`slices.Sort`/`Clone`/`Sorted`) | 1.21+ |
-| `sort_bench_test.go` | Benchmark refeito + post-mortem do bug de 2023 | 1.24 (`B.Loop`) |
-| `loopvar.go` | Variável de loop por iteração (antes/depois) | 1.22 |
-| `iterators.go` | `iter.Seq`, pipeline lazy map/filter/reduce | 1.23 |
-| `option_pre127.go` | `Option[T]` à mão, operações como funções (o "antes") | — |
-| `fpgo_example.go` | `Result`/`Either` com `IBM/fp-go` v2 | 1.24 (aliases) |
-| `concurrency_synctest_test.go` | Teste determinístico de concorrência | 1.25 |
-| `reviewability.go` | Puro vs estado compartilhado (custo de revisão) | — |
-| `evolution-127/option.go` | `Option[T]` com **métodos genéricos** encadeáveis | 1.27 |
-| `evolution-127/ceiling_hkt.go` | O teto: por que não há higher-kinded types | 1.27 |
+| [`01-paradigma`](exemplos/01-paradigma/) | Funções puras e function composition (`Compose`, `ComposeFn`) | — |
+| [`02-loopvar`](exemplos/02-loopvar/) | Variável de loop por iteração (antes/depois) | 1.22 |
+| [`03-iterators`](exemplos/03-iterators/) | `iter.Seq`, pipeline lazy map/filter/reduce | 1.23 |
+| [`04-fpgo`](exemplos/04-fpgo/) | `Result`/`Either` com `IBM/fp-go` v2 | 1.24 (aliases) |
+| [`05-concorrencia`](exemplos/05-concorrencia/) | Teste determinístico de concorrência | 1.25 |
+| [`06-option`](exemplos/06-option/) | `Option[T]` à mão, operações como funções (o "antes") | — |
+| [`07-benchmark-sort`](exemplos/07-benchmark-sort/) | Mutável vs imutável vs lazy + o post-mortem do bug de 2023 | 1.24 (`B.Loop`) |
+| [`08-agentes`](exemplos/08-agentes/) | Puro vs estado compartilhado (custo de revisão) | — |
+| [`evolution-127/option.go`](evolution-127/option.go) | `Option[T]` com **métodos genéricos** encadeáveis | 1.27 |
+| [`evolution-127/ceiling_hkt.go`](evolution-127/ceiling_hkt.go) | O teto: por que não há higher-kinded types | 1.27 |
 
 ## Documentação
 
