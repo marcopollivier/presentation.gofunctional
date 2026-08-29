@@ -1,15 +1,18 @@
 # evolution-127 — o "depois" do divisor de águas (Go 1.27)
 
 Submódulo **separado de propósito**. Os exemplos aqui exigem **Go 1.27**
-(métodos genéricos), que na escrita deste material ainda está em RC. Mantê-los
-fora do módulo raiz deixa a raiz compilando na estável (Go 1.26) e transforma o
-1.27 num estudo da evolução **opt-in**.
+(métodos genéricos). A razão original da separação era de versão — o 1.27 estava
+em RC e a raiz tinha que compilar na estável. Com o **1.27 lançado (ago/2026)** a
+raiz subiu junto, e a separação passou a valer por um motivo melhor: este pacote
+**redeclara** `Option[T]`, `Some`, `None` e `HalfIfEven` para mostrar o "depois",
+e os mesmos nomes vivem em `../option_pre127.go` como o "antes". O par só
+coexiste em pacotes separados — **a colisão é a demonstração**.
 
 ## Como rodar
 
 ```bash
-# baixa o toolchain 1.27 automaticamente e roda os testes
-GOTOOLCHAIN=auto go test ./...
+# 1.27 é estável; o toolchain resolve sozinho
+go test ./...
 
 # ou, da raiz do repo:
 make evolution
@@ -32,6 +35,6 @@ pelos métodos genéricos) e foi para a **capacidade de abstração**.
 Veja o erro do teto com:
 
 ```bash
-GOTOOLCHAIN=auto go build ceiling_hkt.go
-# ./ceiling_hkt.go:34:5: interface method must have no type parameters
+go build ceiling_hkt.go
+# ./ceiling_hkt.go:35:5: interface method must have no type parameters
 ```

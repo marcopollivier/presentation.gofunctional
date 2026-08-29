@@ -1,9 +1,10 @@
-// Submódulo separado de propósito: os exemplos aqui exigem Go 1.27 (métodos
-// genéricos), que na época desta escrita ainda está em RC. Manter isto fora do
-// módulo raiz deixa a raiz compilando na estável e transforma o 1.27 num
-// "estudo da evolução" opt-in. Rode com: GOTOOLCHAIN=auto go test ./...
+// Submódulo separado de propósito. A razão original era de versão: o 1.27
+// estava em RC e a raiz precisava compilar na estável. Com o 1.27 lançado
+// (ago/2026) a raiz subiu junto, mas a separação FICA — e por um motivo melhor,
+// que é o conteúdo da palestra: este pacote redeclara Option[T], Some, None e
+// HalfIfEven para mostrar o "depois" com métodos genéricos. Os mesmos nomes
+// existem em ../option_pre127.go como o "antes". O par só coexiste em pacotes
+// separados — a colisão É a demonstração.
 module gofunctional/evolution-127
 
 go 1.27
-
-toolchain go1.27rc1

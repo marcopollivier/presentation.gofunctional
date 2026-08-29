@@ -28,7 +28,8 @@ benchstat:
 	go test -bench=Sort -benchmem -run='^$$' -benchtime=$(BENCHTIME) -count=$(COUNT) ./... | tee bench.txt
 	benchstat bench.txt
 
-## evolution: roda o submódulo Go 1.27 (baixa o toolchain via GOTOOLCHAIN=auto)
+## evolution: roda o submódulo Go 1.27 (GOTOOLCHAIN=auto cobre quem ainda
+## estiver num toolchain anterior ao 1.27)
 evolution:
 	cd evolution-127 && GOTOOLCHAIN=auto go test ./...
 

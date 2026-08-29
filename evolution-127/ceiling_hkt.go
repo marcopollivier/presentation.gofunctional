@@ -17,9 +17,10 @@
 // erro no palco:
 //     go build ceiling_hkt.go
 //
-// Erro do compilador (go1.27rc1), registrado após rodar de verdade:
-//     ./ceiling_hkt.go:34:5: interface method must have no type parameters
-//     ./ceiling_hkt.go:34:25: undefined: B   (cascata do erro acima)
+// Erro do compilador (go1.27.0), registrado após rodar de verdade — idêntico ao
+// que o go1.27rc1 dava, ou seja, o teto não era provisório do RC:
+//     ./ceiling_hkt.go:35:5: interface method must have no type parameters
+//     ./ceiling_hkt.go:35:25: undefined: B   (cascata do erro acima)
 //
 // Consequência: dá para ter Option.Map. NÃO dá para escrever código que
 // abstrai sobre "todo Functor". A forçação de barra não sumiu — ela saiu da
