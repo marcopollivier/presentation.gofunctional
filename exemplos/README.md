@@ -13,6 +13,7 @@ go test ./exemplos/03-iterators/   # só um exemplo
 
 | # | Pasta | O ponto | Release | Bloco |
 |--|--|--|--|--|
+| 00 | [`00-basico-sobre-ponteiros`](00-basico-sobre-ponteiros/) | O slice é um cabeçalho passado por valor que aponta para o mesmo array — quem recebe `[]int` ganha permissão de escrita na memória do chamador. Mesma assinatura, contratos opostos. | — | 2 |
 | 01 | [`01-paradigma`](01-paradigma/) | Funções puras e composição. `ComposeFn` é `g∘f` de verdade — lazy; `Compose` é a resposta de 2023, eager, preservada para contraste. | — | 2 |
 | 02 | [`02-loopvar`](02-loopvar/) | O footgun de 12 anos que sumiu. `[0 1 2]` hoje, `[3 3 3]` antes. | **1.22** | 3 |
 | 03 | [`03-iterators`](03-iterators/) | `iter.Seq` e pipeline lazy map/filter/reduce, sem materializar slices. Ataca a conclusão do benchmark de coleções de 2023. | **1.23** | 3 |

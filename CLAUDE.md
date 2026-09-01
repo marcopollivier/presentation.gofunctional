@@ -22,7 +22,7 @@ Isso muda os critérios de qualidade:
   voz alta vale mais que um genérico e "elegante".
 - **Cada exemplo é autocontido, curto e projetável.** Nada de over-engineering.
 - **Um pacote por ponto da palestra, numerado na ordem do palco.** `exemplos/`
-  vai de `01-paradigma` a `08-agentes`; o número é a posição na narrativa, não
+  vai de `00-basico-sobre-ponteiros` a `08-agentes`; o número é a posição na narrativa, não
   uma hierarquia. Ao mexer na ordem dos slides, renumere junto.
 - **Não apague o material de 2023.** O "antes" está na tag `v1-devpr24` e é a
   evidência do arco antes/depois. Onde o contraste é o conteúdo do slide, o
@@ -122,6 +122,11 @@ não deixou de ser necessária; ela mudou de função.
 **Módulo raiz (Go 1.27)** — um pacote por ponto da palestra, em `exemplos/`,
 numerados na ordem do palco. O índice de estudo é `exemplos/README.md`.
 
+- `00-basico-sobre-ponteiros/` (`package ponteiros`) — o slice como cabeçalho
+  passado por valor sobre um array compartilhado. `SortedPrint` (muta o
+  argumento) e `SafeSortedPrint` (`slices.Clone` antes de ordenar) têm a mesma
+  assinatura e imprimem o mesmo — só o que sobra no chamador difere. A demo de
+  palco é um `Example` com saída verificada, não um `main`.
 - `01-paradigma/` (`package paradigma`) — funções puras e function composition.
   `Compose` (versão eager de 2023, preservada como didática) e `ComposeFn` (a
   composição matemática de verdade, `g∘f`, lazy).
