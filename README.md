@@ -55,6 +55,7 @@ O roteiro de estudo detalhado está em [`exemplos/README.md`](exemplos/README.md
 
 | Pasta | Conceito | Release |
 |--|--|--|
+| [`00-basico-sobre-ponteiros`](exemplos/00-basico-sobre-ponteiros/) | Mutação via slice compartilhado: `SortedPrint` vs `SafeSortedPrint` | — |
 | [`01-paradigma`](exemplos/01-paradigma/) | Funções puras e function composition (`Compose`, `ComposeFn`) | — |
 | [`02-loopvar`](exemplos/02-loopvar/) | Variável de loop por iteração (antes/depois) | 1.22 |
 | [`03-iterators`](exemplos/03-iterators/) | `iter.Seq`, pipeline lazy map/filter/reduce | 1.23 |
