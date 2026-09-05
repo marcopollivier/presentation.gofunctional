@@ -9,7 +9,12 @@ COUNT     ?= 6
 # tela de "ok ... 0.1s" antes da tabela que interessa.
 SORTPKG   ?= ./exemplos/07-benchmark-sort/
 
-.PHONY: test vet bench bench-sort benchstat evolution all
+# Pasta dos exemplos reais. Cada lab lá dentro é um módulo isolado; este
+# Makefile só delega para o dispatcher de labs/, que descobre os labs sozinho.
+LABS_DIR  ?= labs
+
+.PHONY: test vet bench bench-sort benchstat evolution all \
+        labs labs-vet lab lab-new
 
 ## test: roda todos os testes do módulo raiz
 test:
@@ -38,5 +43,25 @@ benchstat:
 evolution:
 	cd evolution-127 && GOTOOLCHAIN=auto go test ./...
 
-## all: verificação completa do módulo raiz
+## labs: roda os testes de todos os labs (exemplos reais, módulos isolados)
+labs:
+	@$(MAKE) --no-print-directory -C $(LABS_DIR) test
+
+## labs-vet: análise estática em cada lab
+labs-vet:
+	@$(MAKE) --no-print-directory -C $(LABS_DIR) vet
+
+## lab: roda um lab só — make lab LAB=01-nome [TARGET=run]
+lab:
+	@$(MAKE) --no-print-directory -C $(LABS_DIR) lab LAB=$(LAB) $(if $(TARGET),TARGET=$(TARGET))
+
+## lab-new: cria um lab a partir do template —
+## make lab-new NAME=01-nome [GOVERSION=1.21]
+lab-new:
+	@$(MAKE) --no-print-directory -C $(LABS_DIR) lab-new NAME=$(NAME) $(if $(GOVERSION),GOVERSION=$(GOVERSION))
+
+## all: verificação completa do módulo raiz.
+## Não inclui `labs` de propósito: um lab pinado noutra versão pode ter que
+## baixar toolchain, e isso não pode travar a verificação de palco. Para tudo:
+## make all labs
 all: vet test bench-sort
