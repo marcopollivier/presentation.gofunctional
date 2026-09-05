@@ -149,6 +149,10 @@ que converge.
 
 ## Resultados
 
+> 📊 **Os achados da rodada smoke, com gráficos, estão em
+> [`results/ACHADOS-SMOKE.md`](results/ACHADOS-SMOKE.md).** O resumo abaixo é o
+> mesmo conteúdo em texto.
+
 ### Achados provisórios (smoke: `COUNT=1`, `BENCHTIME=50ms`)
 
 Sem significância estatística — `count=1`. Servem para dizer o que procurar na

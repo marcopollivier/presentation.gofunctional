@@ -1,0 +1,19 @@
+# Registro da medição
+data:        2026-09-05T06:34:57Z (UTC)
+uname:       Darwin MacBook-Pro-de-Marco.local 25.5.0 Darwin Kernel Version 25.5.0: Tue Jun  9 22:28:29 PDT 2026; root:xnu-12377.121.10~1/RELEASE_ARM64_T6030 arm64
+cpu:         Apple M3 Pro
+cores:       11 (5 performance)
+mem:         18 GB
+go (host):   go version go1.27.0 darwin/arm64
+
+parâmetros:  count=1 benchtime=50ms bench=/5$|/1k$|TimerOverhead cpu=1
+go.mod lang: 1.21
+
+toolchains:
+  go1.21.13    go version go1.21.13 darwin/arm64
+  go1.22.12    go version go1.22.12 darwin/arm64
+  go1.23.12    go version go1.23.12 darwin/arm64
+  go1.24.13    go version go1.24.13 darwin/arm64
+  go1.25.14    go version go1.25.14 darwin/arm64
+  go1.26.8     go version go1.26.8 darwin/arm64
+  go1.27.1     go version go1.27.1 darwin/arm64

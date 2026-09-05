@@ -1,0 +1,17 @@
+goos: darwin
+goarch: arm64
+pkg: gofunctional/benchmarks/crossversion
+BenchmarkInPlace/5       	  381751	       138.9 ns/op	      24 B/op	       1 allocs/op
+BenchmarkInPlace/1k      	    2228	     26215 ns/op	      24 B/op	       1 allocs/op
+BenchmarkInPlaceCopy/5   	 1000000	        52.93 ns/op	      24 B/op	       1 allocs/op
+BenchmarkInPlaceCopy/1k  	    2677	     24000 ns/op	      24 B/op	       1 allocs/op
+BenchmarkImmutable/5     	 1000000	        65.21 ns/op	      72 B/op	       2 allocs/op
+BenchmarkImmutable/1k    	    2618	     24588 ns/op	    8216 B/op	       2 allocs/op
+BenchmarkCopyOnly/5      	40649276	         1.547 ns/op	       0 B/op	       0 allocs/op
+BenchmarkCopyOnly/1k     	  747313	        99.21 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLegacyInPlace/5 	 2075806	        29.13 ns/op	      24 B/op	       1 allocs/op
+BenchmarkLegacyInPlace/1k         	   29850	      2045 ns/op	      24 B/op	       1 allocs/op
+BenchmarkLegacyImmutable/5        	 1000000	        65.06 ns/op	      72 B/op	       2 allocs/op
+BenchmarkLegacyImmutable/1k       	    2469	     24030 ns/op	    8216 B/op	       2 allocs/op
+PASS
+ok  	gofunctional/benchmarks/crossversion	11.682s

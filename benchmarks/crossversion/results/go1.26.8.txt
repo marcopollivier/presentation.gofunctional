@@ -1,0 +1,18 @@
+goos: darwin
+goarch: arm64
+pkg: gofunctional/benchmarks/crossversion
+cpu: Apple M3 Pro
+BenchmarkInPlace/5       	 1664690	        35.76 ns/op	       0 B/op	       0 allocs/op
+BenchmarkInPlace/1k      	    5504	     10252 ns/op	       0 B/op	       0 allocs/op
+BenchmarkInPlaceCopy/5   	 4807996	        12.00 ns/op	       0 B/op	       0 allocs/op
+BenchmarkInPlaceCopy/1k  	    6386	      9150 ns/op	       0 B/op	       0 allocs/op
+BenchmarkImmutable/5     	 2418058	        25.66 ns/op	      48 B/op	       1 allocs/op
+BenchmarkImmutable/1k    	    5815	      9822 ns/op	    8192 B/op	       1 allocs/op
+BenchmarkCopyOnly/5      	37508790	         1.651 ns/op	       0 B/op	       0 allocs/op
+BenchmarkCopyOnly/1k     	  682334	        95.11 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLegacyInPlace/5 	10372098	         6.076 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLegacyInPlace/1k         	  103330	       582.2 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLegacyImmutable/5        	 2442697	        24.43 ns/op	      48 B/op	       1 allocs/op
+BenchmarkLegacyImmutable/1k       	    6478	      9664 ns/op	    8192 B/op	       1 allocs/op
+PASS
+ok  	gofunctional/benchmarks/crossversion	71.974s

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 380" width="760" height="380" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" role="img" aria-label="Custo puro do sort — 1000 elementos">
+<rect width="760" height="380" fill="#fcfcfb"/>
+<text x="24" y="30" font-size="15" font-weight="600" fill="#0b0b0b">Custo puro do sort — 1000 elementos</text>
+<text x="24" y="49" font-size="12" fill="#52514e">InPlaceCopy − CopyOnly · smoke COUNT=1, sem significância estatística · Apple M3 Pro, -cpu=1</text>
+<line x1="64" y1="318.0" x2="736" y2="318.0" stroke="#e6e5e1" stroke-width="1"/>
+<text x="54" y="322.0" font-size="11" fill="#8a8880" text-anchor="end">0 µs</text>
+<line x1="64" y1="270.0" x2="736" y2="270.0" stroke="#e6e5e1" stroke-width="1"/>
+<text x="54" y="274.0" font-size="11" fill="#8a8880" text-anchor="end">5 µs</text>
+<line x1="64" y1="222.0" x2="736" y2="222.0" stroke="#e6e5e1" stroke-width="1"/>
+<text x="54" y="226.0" font-size="11" fill="#8a8880" text-anchor="end">10 µs</text>
+<line x1="64" y1="174.0" x2="736" y2="174.0" stroke="#e6e5e1" stroke-width="1"/>
+<text x="54" y="178.0" font-size="11" fill="#8a8880" text-anchor="end">16 µs</text>
+<line x1="64" y1="126.0" x2="736" y2="126.0" stroke="#e6e5e1" stroke-width="1"/>
+<text x="54" y="130.0" font-size="11" fill="#8a8880" text-anchor="end">21 µs</text>
+<line x1="64" y1="78.0" x2="736" y2="78.0" stroke="#e6e5e1" stroke-width="1"/>
+<text x="54" y="82.0" font-size="11" fill="#8a8880" text-anchor="end">26 µs</text>
+<path d="M71.0,318.0 L71.0,101.3753846153846 Q71.0,97.3753846153846 75.0,97.3753846153846 L149.0,97.3753846153846 Q153.0,97.3753846153846 153.0,101.3753846153846 L153.0,318.0 Z" fill="#eb6834"/>
+<text x="112.0" y="89.4" font-size="11.5" font-weight="600" fill="#0b0b0b" text-anchor="middle">23.9 µs</text>
+<text x="112.0" y="338" font-size="12" fill="#52514e" text-anchor="middle">1.21</text>
+<path d="M167.0,318.0 L167.0,240.2246153846154 Q167.0,236.2246153846154 171.0,236.2246153846154 L245.0,236.2246153846154 Q249.0,236.2246153846154 249.0,240.2246153846154 L249.0,318.0 Z" fill="#2a78d6"/>
+<text x="208.0" y="228.2" font-size="11.5" font-weight="600" fill="#0b0b0b" text-anchor="middle">8.9 µs</text>
+<text x="208.0" y="338" font-size="12" fill="#52514e" text-anchor="middle">1.22</text>
+<path d="M263.0,318.0 L263.0,234.17846153846153 Q263.0,230.17846153846153 267.0,230.17846153846153 L341.0,230.17846153846153 Q345.0,230.17846153846153 345.0,234.17846153846153 L345.0,318.0 Z" fill="#2a78d6"/>
+<text x="304.0" y="222.2" font-size="11.5" font-weight="600" fill="#0b0b0b" text-anchor="middle">9.5 µs</text>
+<text x="304.0" y="338" font-size="12" fill="#52514e" text-anchor="middle">1.23</text>
+<path d="M359.0,318.0 L359.0,236.16307692307691 Q359.0,232.16307692307691 363.0,232.16307692307691 L437.0,232.16307692307691 Q441.0,232.16307692307691 441.0,236.16307692307691 L441.0,318.0 Z" fill="#2a78d6"/>
+<text x="400.0" y="224.2" font-size="11.5" font-weight="600" fill="#0b0b0b" text-anchor="middle">9.3 µs</text>
+<text x="400.0" y="338" font-size="12" fill="#52514e" text-anchor="middle">1.24</text>
+<path d="M455.0,318.0 L455.0,238.57230769230767 Q455.0,234.57230769230767 459.0,234.57230769230767 L533.0,234.57230769230767 Q537.0,234.57230769230767 537.0,238.57230769230767 L537.0,318.0 Z" fill="#2a78d6"/>
+<text x="496.0" y="226.6" font-size="11.5" font-weight="600" fill="#0b0b0b" text-anchor="middle">9.0 µs</text>
+<text x="496.0" y="338" font-size="12" fill="#52514e" text-anchor="middle">1.25</text>
+<path d="M551.0,318.0 L551.0,238.4153846153846 Q551.0,234.4153846153846 555.0,234.4153846153846 L629.0,234.4153846153846 Q633.0,234.4153846153846 633.0,238.4153846153846 L633.0,318.0 Z" fill="#2a78d6"/>
+<text x="592.0" y="226.4" font-size="11.5" font-weight="600" fill="#0b0b0b" text-anchor="middle">9.1 µs</text>
+<text x="592.0" y="338" font-size="12" fill="#52514e" text-anchor="middle">1.26</text>
+<path d="M647.0,318.0 L647.0,240.56615384615384 Q647.0,236.56615384615384 651.0,236.56615384615384 L725.0,236.56615384615384 Q729.0,236.56615384615384 729.0,240.56615384615384 L729.0,318.0 Z" fill="#2a78d6"/>
+<text x="688.0" y="228.6" font-size="11.5" font-weight="600" fill="#0b0b0b" text-anchor="middle">8.8 µs</text>
+<text x="688.0" y="338" font-size="12" fill="#52514e" text-anchor="middle">1.27</text>
+<line x1="71.0" y1="236.2" x2="736" y2="236.2" stroke="#8a8880" stroke-width="1" stroke-dasharray="4 4"/>
+<line x1="258.0" y1="97.4" x2="258.0" y2="236.2" stroke="#52514e" stroke-width="1.5"/>
+<path d="M254.5,102.4 L258.0,97.4 L261.5,102.4" fill="none" stroke="#52514e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M254.5,231.2 L258.0,236.2 L261.5,231.2" fill="none" stroke="#52514e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="267.0" y="163.8" font-size="13" font-weight="700" fill="#0b0b0b">2,7× mais rápido</text>
+<text x="267.0" y="180.8" font-size="11.5" fill="#52514e">do 1.21 para o 1.22</text>
+<text x="64" y="362" font-size="11.5" fill="#52514e">No 1.22 <tspan font-weight="600" fill="#0b0b0b">sort.Ints</tspan> passou a chamar slices.Sort — pdqsort genérico, sem dispatch de interface por comparação.</text>
+</svg>

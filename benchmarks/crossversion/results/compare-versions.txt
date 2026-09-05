@@ -1,0 +1,120 @@
+goos: darwin
+goarch: arm64
+pkg: gofunctional/benchmarks/crossversion
+cpu: 
+                   │ /tmp/smoke/go1.21.13.txt │        /tmp/smoke/go1.22.12.txt        │
+                   │          sec/op          │    sec/op      vs base                 │
+InPlace/5                       138.90n ± ∞ ¹    38.41n ± ∞ ¹        ~ (p=1.000 n=1) ²
+InPlace/1k                       26.22µ ± ∞ ¹    10.75µ ± ∞ ¹        ~ (p=1.000 n=1) ²
+InPlaceCopy/5                    52.93n ± ∞ ¹    14.18n ± ∞ ¹        ~ (p=1.000 n=1) ²
+InPlaceCopy/1k                  24.000µ ± ∞ ¹    8.963µ ± ∞ ¹        ~ (p=1.000 n=1) ²
+Immutable/5                      65.21n ± ∞ ¹    26.30n ± ∞ ¹        ~ (p=1.000 n=1) ²
+Immutable/1k                    24.588µ ± ∞ ¹    9.557µ ± ∞ ¹        ~ (p=1.000 n=1) ²
+CopyOnly/5                       1.547n ± ∞ ¹    1.798n ± ∞ ¹        ~ (p=1.000 n=1) ²
+CopyOnly/1k                      99.21n ± ∞ ¹   104.00n ± ∞ ¹        ~ (p=1.000 n=1) ²
+LegacyInPlace/5                 29.130n ± ∞ ¹    5.735n ± ∞ ¹        ~ (p=1.000 n=1) ²
+LegacyInPlace/1k                2045.0n ± ∞ ¹    568.8n ± ∞ ¹        ~ (p=1.000 n=1) ²
+LegacyImmutable/5                65.06n ± ∞ ¹    28.01n ± ∞ ¹        ~ (p=1.000 n=1) ²
+LegacyImmutable/1k              24.030µ ± ∞ ¹    9.707µ ± ∞ ¹        ~ (p=1.000 n=1) ²
+geomean                          466.4n          189.8n        -59.30%
+¹ need >= 6 samples for confidence interval at level 0.95
+² need >= 4 samples to detect a difference at alpha level 0.05
+
+                   │ /tmp/smoke/go1.21.13.txt │      /tmp/smoke/go1.22.12.txt      │
+                   │           B/op           │     B/op       vs base             │
+InPlace/5                         24.00 ± ∞ ¹      0.00 ± ∞ ¹  ~ (p=1.000 n=1) ²
+InPlace/1k                        24.00 ± ∞ ¹      0.00 ± ∞ ¹  ~ (p=1.000 n=1) ²
+InPlaceCopy/5                     24.00 ± ∞ ¹      0.00 ± ∞ ¹  ~ (p=1.000 n=1) ²
+InPlaceCopy/1k                    24.00 ± ∞ ¹      0.00 ± ∞ ¹  ~ (p=1.000 n=1) ²
+Immutable/5                       72.00 ± ∞ ¹     48.00 ± ∞ ¹  ~ (p=1.000 n=1) ²
+Immutable/1k                    8.023Ki ± ∞ ¹   8.000Ki ± ∞ ¹  ~ (p=1.000 n=1) ²
+CopyOnly/5                        0.000 ± ∞ ¹     0.000 ± ∞ ¹  ~ (p=1.000 n=1) ³
+CopyOnly/1k                       0.000 ± ∞ ¹     0.000 ± ∞ ¹  ~ (p=1.000 n=1) ³
+LegacyInPlace/5                   24.00 ± ∞ ¹      0.00 ± ∞ ¹  ~ (p=1.000 n=1) ²
+LegacyInPlace/1k                  24.00 ± ∞ ¹      0.00 ± ∞ ¹  ~ (p=1.000 n=1) ²
+LegacyImmutable/5                 72.00 ± ∞ ¹     48.00 ± ∞ ¹  ~ (p=1.000 n=1) ²
+LegacyImmutable/1k              8.023Ki ± ∞ ¹   8.000Ki ± ∞ ¹  ~ (p=1.000 n=1) ²
+geomean                                     ⁴                  ?               ⁴ ⁵
+¹ need >= 6 samples for confidence interval at level 0.95
+² need >= 4 samples to detect a difference at alpha level 0.05
+³ all samples are equal
+⁴ summaries must be >0 to compute geomean
+⁵ ratios must be >0 to compute geomean
+
+                   │ /tmp/smoke/go1.21.13.txt │     /tmp/smoke/go1.22.12.txt     │
+                   │        allocs/op         │  allocs/op   vs base             │
+InPlace/5                         1.000 ± ∞ ¹   0.000 ± ∞ ¹  ~ (p=1.000 n=1) ²
+InPlace/1k                        1.000 ± ∞ ¹   0.000 ± ∞ ¹  ~ (p=1.000 n=1) ²
+InPlaceCopy/5                     1.000 ± ∞ ¹   0.000 ± ∞ ¹  ~ (p=1.000 n=1) ²
+InPlaceCopy/1k                    1.000 ± ∞ ¹   0.000 ± ∞ ¹  ~ (p=1.000 n=1) ²
+Immutable/5                       2.000 ± ∞ ¹   1.000 ± ∞ ¹  ~ (p=1.000 n=1) ²
+Immutable/1k                      2.000 ± ∞ ¹   1.000 ± ∞ ¹  ~ (p=1.000 n=1) ²
+CopyOnly/5                        0.000 ± ∞ ¹   0.000 ± ∞ ¹  ~ (p=1.000 n=1) ³
+CopyOnly/1k                       0.000 ± ∞ ¹   0.000 ± ∞ ¹  ~ (p=1.000 n=1) ³
+LegacyInPlace/5                   1.000 ± ∞ ¹   0.000 ± ∞ ¹  ~ (p=1.000 n=1) ²
+LegacyInPlace/1k                  1.000 ± ∞ ¹   0.000 ± ∞ ¹  ~ (p=1.000 n=1) ²
+LegacyImmutable/5                 2.000 ± ∞ ¹   1.000 ± ∞ ¹  ~ (p=1.000 n=1) ²
+LegacyImmutable/1k                2.000 ± ∞ ¹   1.000 ± ∞ ¹  ~ (p=1.000 n=1) ²
+geomean                                     ⁴                ?               ⁴ ⁵
+¹ need >= 6 samples for confidence interval at level 0.95
+² need >= 4 samples to detect a difference at alpha level 0.05
+³ all samples are equal
+⁴ summaries must be >0 to compute geomean
+⁵ ratios must be >0 to compute geomean
+
+cpu: Apple M3 Pro
+                   │ /tmp/smoke/go1.23.12.txt │       /tmp/smoke/go1.24.13.txt        │       /tmp/smoke/go1.25.14.txt        │        /tmp/smoke/go1.26.8.txt        │       /tmp/smoke/go1.27.1.txt        │
+                   │          sec/op          │    sec/op      vs base                │    sec/op      vs base                │    sec/op      vs base                │    sec/op     vs base                │
+InPlace/5                        39.16n ± ∞ ¹    39.00n ± ∞ ¹       ~ (p=1.000 n=1) ²    42.23n ± ∞ ¹       ~ (p=1.000 n=1) ²    35.76n ± ∞ ¹       ~ (p=1.000 n=1) ²   37.67n ± ∞ ¹       ~ (p=1.000 n=1) ²
+InPlace/1k                      11.595µ ± ∞ ¹   11.239µ ± ∞ ¹       ~ (p=1.000 n=1) ²   11.116µ ± ∞ ¹       ~ (p=1.000 n=1) ²   10.252µ ± ∞ ¹       ~ (p=1.000 n=1) ²   9.874µ ± ∞ ¹       ~ (p=1.000 n=1) ²
+InPlaceCopy/5                    15.17n ± ∞ ¹    14.14n ± ∞ ¹       ~ (p=1.000 n=1) ²    14.63n ± ∞ ¹       ~ (p=1.000 n=1) ²    12.00n ± ∞ ¹       ~ (p=1.000 n=1) ²   12.26n ± ∞ ¹       ~ (p=1.000 n=1) ²
+InPlaceCopy/1k                   9.605µ ± ∞ ¹    9.391µ ± ∞ ¹       ~ (p=1.000 n=1) ²    9.131µ ± ∞ ¹       ~ (p=1.000 n=1) ²    9.150µ ± ∞ ¹       ~ (p=1.000 n=1) ²   8.919µ ± ∞ ¹       ~ (p=1.000 n=1) ²
+Immutable/5                      28.87n ± ∞ ¹    25.43n ± ∞ ¹       ~ (p=1.000 n=1) ²    26.23n ± ∞ ¹       ~ (p=1.000 n=1) ²    25.66n ± ∞ ¹       ~ (p=1.000 n=1) ²   22.30n ± ∞ ¹       ~ (p=1.000 n=1) ²
+Immutable/1k                    10.036µ ± ∞ ¹    9.850µ ± ∞ ¹       ~ (p=1.000 n=1) ²    9.571µ ± ∞ ¹       ~ (p=1.000 n=1) ²    9.822µ ± ∞ ¹       ~ (p=1.000 n=1) ²   9.378µ ± ∞ ¹       ~ (p=1.000 n=1) ²
+CopyOnly/5                       1.612n ± ∞ ¹    1.600n ± ∞ ¹       ~ (p=1.000 n=1) ²    1.619n ± ∞ ¹       ~ (p=1.000 n=1) ²    1.651n ± ∞ ¹       ~ (p=1.000 n=1) ²   1.868n ± ∞ ¹       ~ (p=1.000 n=1) ²
+CopyOnly/1k                      91.42n ± ∞ ¹    92.02n ± ∞ ¹       ~ (p=1.000 n=1) ²    92.56n ± ∞ ¹       ~ (p=1.000 n=1) ²    95.11n ± ∞ ¹       ~ (p=1.000 n=1) ²   97.36n ± ∞ ¹       ~ (p=1.000 n=1) ²
+LegacyInPlace/5                  6.182n ± ∞ ¹    5.844n ± ∞ ¹       ~ (p=1.000 n=1) ²    5.792n ± ∞ ¹       ~ (p=1.000 n=1) ²    6.076n ± ∞ ¹       ~ (p=1.000 n=1) ²   6.012n ± ∞ ¹       ~ (p=1.000 n=1) ²
+LegacyInPlace/1k                 556.9n ± ∞ ¹    549.8n ± ∞ ¹       ~ (p=1.000 n=1) ²    574.3n ± ∞ ¹       ~ (p=1.000 n=1) ²    582.2n ± ∞ ¹       ~ (p=1.000 n=1) ²   578.3n ± ∞ ¹       ~ (p=1.000 n=1) ²
+LegacyImmutable/5                27.06n ± ∞ ¹    25.55n ± ∞ ¹       ~ (p=1.000 n=1) ²    25.84n ± ∞ ¹       ~ (p=1.000 n=1) ²    24.43n ± ∞ ¹       ~ (p=1.000 n=1) ²   22.55n ± ∞ ¹       ~ (p=1.000 n=1) ²
+LegacyImmutable/1k               9.374µ ± ∞ ¹    9.965µ ± ∞ ¹       ~ (p=1.000 n=1) ²    9.872µ ± ∞ ¹       ~ (p=1.000 n=1) ²    9.664µ ± ∞ ¹       ~ (p=1.000 n=1) ²   9.178µ ± ∞ ¹       ~ (p=1.000 n=1) ²
+geomean                          191.7n          186.4n        -2.79%                    188.4n        -1.73%                    182.1n        -5.02%                   179.4n        -6.42%
+¹ need >= 6 samples for confidence interval at level 0.95
+² need >= 4 samples to detect a difference at alpha level 0.05
+
+                   │ /tmp/smoke/go1.23.12.txt │       /tmp/smoke/go1.24.13.txt        │       /tmp/smoke/go1.25.14.txt        │        /tmp/smoke/go1.26.8.txt        │        /tmp/smoke/go1.27.1.txt        │
+                   │           B/op           │     B/op       vs base                │     B/op       vs base                │     B/op       vs base                │     B/op       vs base                │
+InPlace/5                         0.000 ± ∞ ¹     0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²     0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²     0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²     0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²
+InPlace/1k                        0.000 ± ∞ ¹     0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²     0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²     0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²     0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²
+InPlaceCopy/5                     0.000 ± ∞ ¹     0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²     0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²     0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²     0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²
+InPlaceCopy/1k                    0.000 ± ∞ ¹     0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²     0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²     0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²     0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²
+Immutable/5                       48.00 ± ∞ ¹     48.00 ± ∞ ¹       ~ (p=1.000 n=1) ²     48.00 ± ∞ ¹       ~ (p=1.000 n=1) ²     48.00 ± ∞ ¹       ~ (p=1.000 n=1) ²     48.00 ± ∞ ¹       ~ (p=1.000 n=1) ²
+Immutable/1k                    8.000Ki ± ∞ ¹   8.000Ki ± ∞ ¹       ~ (p=1.000 n=1) ²   8.000Ki ± ∞ ¹       ~ (p=1.000 n=1) ²   8.000Ki ± ∞ ¹       ~ (p=1.000 n=1) ²   8.000Ki ± ∞ ¹       ~ (p=1.000 n=1) ²
+CopyOnly/5                        0.000 ± ∞ ¹     0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²     0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²     0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²     0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²
+CopyOnly/1k                       0.000 ± ∞ ¹     0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²     0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²     0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²     0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²
+LegacyInPlace/5                   0.000 ± ∞ ¹     0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²     0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²     0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²     0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²
+LegacyInPlace/1k                  0.000 ± ∞ ¹     0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²     0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²     0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²     0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²
+LegacyImmutable/5                 48.00 ± ∞ ¹     48.00 ± ∞ ¹       ~ (p=1.000 n=1) ²     48.00 ± ∞ ¹       ~ (p=1.000 n=1) ²     48.00 ± ∞ ¹       ~ (p=1.000 n=1) ²     48.00 ± ∞ ¹       ~ (p=1.000 n=1) ²
+LegacyImmutable/1k              8.000Ki ± ∞ ¹   8.000Ki ± ∞ ¹       ~ (p=1.000 n=1) ²   8.000Ki ± ∞ ¹       ~ (p=1.000 n=1) ²   8.000Ki ± ∞ ¹       ~ (p=1.000 n=1) ²   8.000Ki ± ∞ ¹       ~ (p=1.000 n=1) ²
+geomean                                     ³                  +0.00%               ³                  +0.00%               ³                  +0.00%               ³                  +0.00%               ³
+¹ need >= 6 samples for confidence interval at level 0.95
+² all samples are equal
+³ summaries must be >0 to compute geomean
+
+                   │ /tmp/smoke/go1.23.12.txt │      /tmp/smoke/go1.24.13.txt       │      /tmp/smoke/go1.25.14.txt       │       /tmp/smoke/go1.26.8.txt       │       /tmp/smoke/go1.27.1.txt       │
+                   │        allocs/op         │  allocs/op   vs base                │  allocs/op   vs base                │  allocs/op   vs base                │  allocs/op   vs base                │
+InPlace/5                         0.000 ± ∞ ¹   0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²   0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²   0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²   0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²
+InPlace/1k                        0.000 ± ∞ ¹   0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²   0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²   0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²   0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²
+InPlaceCopy/5                     0.000 ± ∞ ¹   0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²   0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²   0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²   0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²
+InPlaceCopy/1k                    0.000 ± ∞ ¹   0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²   0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²   0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²   0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²
+Immutable/5                       1.000 ± ∞ ¹   1.000 ± ∞ ¹       ~ (p=1.000 n=1) ²   1.000 ± ∞ ¹       ~ (p=1.000 n=1) ²   1.000 ± ∞ ¹       ~ (p=1.000 n=1) ²   1.000 ± ∞ ¹       ~ (p=1.000 n=1) ²
+Immutable/1k                      1.000 ± ∞ ¹   1.000 ± ∞ ¹       ~ (p=1.000 n=1) ²   1.000 ± ∞ ¹       ~ (p=1.000 n=1) ²   1.000 ± ∞ ¹       ~ (p=1.000 n=1) ²   1.000 ± ∞ ¹       ~ (p=1.000 n=1) ²
+CopyOnly/5                        0.000 ± ∞ ¹   0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²   0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²   0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²   0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²
+CopyOnly/1k                       0.000 ± ∞ ¹   0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²   0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²   0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²   0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²
+LegacyInPlace/5                   0.000 ± ∞ ¹   0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²   0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²   0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²   0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²
+LegacyInPlace/1k                  0.000 ± ∞ ¹   0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²   0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²   0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²   0.000 ± ∞ ¹       ~ (p=1.000 n=1) ²
+LegacyImmutable/5                 1.000 ± ∞ ¹   1.000 ± ∞ ¹       ~ (p=1.000 n=1) ²   1.000 ± ∞ ¹       ~ (p=1.000 n=1) ²   1.000 ± ∞ ¹       ~ (p=1.000 n=1) ²   1.000 ± ∞ ¹       ~ (p=1.000 n=1) ²
+LegacyImmutable/1k                1.000 ± ∞ ¹   1.000 ± ∞ ¹       ~ (p=1.000 n=1) ²   1.000 ± ∞ ¹       ~ (p=1.000 n=1) ²   1.000 ± ∞ ¹       ~ (p=1.000 n=1) ²   1.000 ± ∞ ¹       ~ (p=1.000 n=1) ²
+geomean                                     ³                +0.00%               ³                +0.00%               ³                +0.00%               ³                +0.00%               ³
+¹ need >= 6 samples for confidence interval at level 0.95
+² all samples are equal
+³ summaries must be >0 to compute geomean
