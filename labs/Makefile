@@ -22,7 +22,7 @@ TARGET ?= test
 ## test, vet, tidy, all: repassa o alvo a todos os labs
 test vet tidy all:
 	@if [ -z "$(LABS)" ]; then \
-		echo "nenhum lab ainda — crie um com: make lab-new NAME=01-nome"; \
+		echo "nenhum lab ainda — crie um com: make lab-new NAME=010-nome"; \
 		exit 0; \
 	fi
 	@for lab in $(LABS); do \
@@ -34,15 +34,15 @@ test vet tidy all:
 list:
 	@if [ -z "$(LABS)" ]; then echo "(nenhum lab ainda)"; else printf '%s\n' $(LABS); fi
 
-## lab: roda um lab só — make lab LAB=01-nome [TARGET=run]
+## lab: roda um lab só — make lab LAB=020-nome [TARGET=run]
 lab:
 	@test -n "$(LAB)" || { echo "uso: make lab LAB=<pasta> [TARGET=run]" >&2; exit 2; }
 	@test -f "$(LAB)/go.mod" || { echo "lab '$(LAB)' não existe (veja: make list)" >&2; exit 2; }
 	@$(MAKE) --no-print-directory -C $(LAB) $(TARGET)
 
-## lab-new: cria um lab a partir do template — make lab-new NAME=01-nome [GOVERSION=1.21]
+## lab-new: cria um lab a partir do template — make lab-new NAME=021-nome [GOVERSION=1.21]
 lab-new:
-	@test -n "$(NAME)" || { echo "uso: make lab-new NAME=NN-slug [GOVERSION=1.21]" >&2; exit 2; }
+	@test -n "$(NAME)" || { echo "uso: make lab-new NAME=CEE-slug (capítulo+exemplo, ex. 021) [GOVERSION=1.21]" >&2; exit 2; }
 	@test ! -e "$(NAME)" || { echo "'$(NAME)' já existe — não vou sobrescrever" >&2; exit 2; }
 	@mkdir -p "$(NAME)"
 	@for f in $(TEMPLATE)/*.tmpl; do \

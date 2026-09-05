@@ -14,8 +14,8 @@ uma dep que quebrou, **não derruba** o material da palestra.
 
 | # | Pasta | O ponto | Go | Bloco |
 |--|--|--|--|--|
-| 01 | [`01-relembrar-funcional`](01-relembrar-funcional/) | `f(x) = x² + 3` no papel vs em Go. A pura e a que suja um global devolvem o mesmo 7 e têm a **mesma assinatura** — o contrato não distingue as duas. | 1.27 | 1 |
-| 02 | [`02-estado-global-ponteiros`](02-estado-global-ponteiros/) | `Len` e `Changer` recebem o mesmo `*string`: uma lê, a outra reescreve o chamador. O endereço não muda nos três momentos — e `Len(&nome)` responde 14 e depois 20. | **1.21** | 2 |
+| 010 | [`010-relembrar-funcional`](010-relembrar-funcional/) | `f(x) = x² + 3` no papel vs em Go. A pura e a que suja um global devolvem o mesmo 7 e têm a **mesma assinatura** — o contrato não distingue as duas. | 1.27 | 1 |
+| 020 | [`020-estado-global-ponteiros`](020-estado-global-ponteiros/) | `Len` e `Changer` recebem o mesmo `*string`: uma lê, a outra reescreve o chamador. O endereço não muda nos três momentos — e `Len(&nome)` responde 14 e depois 20. | **1.21** | 2 |
 
 ## Como rodar
 
@@ -23,8 +23,8 @@ Da raiz do repositório:
 
 ```bash
 make labs                          # testes de todos os labs
-make lab LAB=01-nome               # um lab só
-make lab LAB=01-nome TARGET=run    # executa em vez de testar
+make lab LAB=020-nome              # um lab só
+make lab LAB=020-nome TARGET=run   # executa em vez de testar
 make labs-vet                      # go vet em cada lab
 ```
 
@@ -38,8 +38,8 @@ make run
 ## Como criar um lab
 
 ```bash
-make lab-new NAME=01-nome                  # usa a versão de Go do módulo raiz
-make lab-new NAME=02-antes GOVERSION=1.21  # pina numa versão anterior
+make lab-new NAME=021-nome                 # usa a versão de Go do módulo raiz
+make lab-new NAME=022-antes GOVERSION=1.21 # pina numa versão anterior
 ```
 
 Isso copia `_template/`, substitui os placeholders e cria `go.mod`, `Makefile`,
@@ -47,14 +47,20 @@ Isso copia `_template/`, substitui os placeholders e cria `go.mod`, `Makefile`,
 sobrescreve pasta existente. Depois: preencha o comentário de topo e acrescente a
 linha do lab na tabela acima.
 
-`GOTOOLCHAIN=auto` está no Makefile de cada lab, então um lab pinado numa versão
-que você não tem instalada baixa o toolchain sozinho na primeira execução.
+O template traz `GOTOOLCHAIN=auto` no Makefile do lab, então uma versão mais
+nova que a instalada é baixada sozinha na primeira execução. Para uma versão
+mais **antiga**, o `auto` não serve — ele só sobe. Nesse caso troque o `auto`
+pela versão exata (`GOTOOLCHAIN ?= go1.21.13`), como faz o
+[`020-estado-global-ponteiros`](020-estado-global-ponteiros/).
 
 ## Convenções
 
-- **`NN-slug`** — o número é a ordem de aparição no palco, não hierarquia. Como
-  os labs são módulos isolados e **nenhum importa o outro**, renumerar é `git mv`
-  + editar a linha `module`. Nada quebra.
+- **`CEE-slug`** — o número diz **capítulo** e **exemplo dentro do capítulo**:
+  `020` é o primeiro exemplo do capítulo 2, `021` o segundo, `022` o terceiro.
+  Um capítulo cabe em quantos labs precisar sem renumerar o resto, que é o
+  motivo de existir o dígito extra. A ordem é a do palco, não uma hierarquia.
+  E como os labs são módulos isolados e **nenhum importa o outro**, renumerar
+  quando for preciso é `git mv` + editar a linha `module`. Nada quebra.
 - **O diretório tem hífen; o pacote, não** — Go não aceita hífen em nome de
   pacote. Mesma divergência intencional de `exemplos/`.
 - **Comentário de topo obrigatório** no arquivo principal: qual bloco da

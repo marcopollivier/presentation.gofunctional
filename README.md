@@ -38,7 +38,7 @@ make bench-sort                    # o benchmark central (ordenação)
 make benchstat                     # roda N vezes e resume (requer benchstat)
 make evolution                     # exemplos do submódulo (métodos genéricos, 1.27)
 make labs                          # os exemplos reais de labs/ (módulos isolados)
-make lab LAB=01-nome TARGET=run    # executa um lab
+make lab LAB=020-nome TARGET=run   # executa um lab
 ```
 
 Para ver o benchmark de 2023 (com o bug) e comparar com o de hoje:
@@ -79,7 +79,7 @@ pinado numa versão antiga nunca derruba o material da palestra.
 
 ```bash
 make labs                                  # testa todos
-make lab-new NAME=01-nome GOVERSION=1.21   # cria um novo, pinado numa versão
+make lab-new NAME=021-nome GOVERSION=1.21  # cria um novo, pinado numa versão
 ```
 
 O índice dos labs está em [`labs/README.md`](labs/README.md).

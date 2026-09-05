@@ -1,4 +1,4 @@
-# Lab 02 — ponteiro e função pura
+# Lab 020 — ponteiro e função pura
 
 > **O ponto:** `Len` e `Changer` recebem exatamente a mesma coisa, um
 > `*string`. Uma lê, a outra reescreve a variável de quem chamou. A assinatura
@@ -22,7 +22,7 @@ make all       # vet + test
 Ou, da raiz do repo:
 
 ```bash
-make lab LAB=02-estado-global-ponteiros TARGET=run
+make lab LAB=020-estado-global-ponteiros TARGET=run
 ```
 
 ## O que a saída mostra
@@ -55,7 +55,7 @@ Len(&nome)   // 20  — mesmo argumento
 ```
 
 Mesma função pura, mesmo argumento, resposta diferente. O que se perdeu não foi
-a pureza — foi a **transparência referencial** do [lab 01](../01-relembrar-funcional/):
+a pureza — foi a **transparência referencial** do [lab 010](../010-relembrar-funcional/):
 `Len(&nome)` deixou de poder ser trocada pelo seu resultado, porque o resultado
 agora depende de *quando* a chamada acontece. Com `Len(nome)`, por valor, o
 argumento seria o texto, e 14 seria 14 para sempre.

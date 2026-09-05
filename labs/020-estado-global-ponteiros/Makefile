@@ -1,4 +1,4 @@
-# Lab 02-estado-global-ponteiros — Makefile local.
+# Lab 020-estado-global-ponteiros — Makefile local.
 #
 # Este lab é um módulo Go isolado e roda no Go 1.21.
 #

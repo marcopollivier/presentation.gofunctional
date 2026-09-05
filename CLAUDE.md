@@ -66,9 +66,9 @@ make benchstat                         # roda N vezes e resume com benchstat
 make evolution                         # exemplos do submódulo (métodos genéricos)
 
 make labs                              # testes de todos os labs (exemplos reais)
-make lab LAB=01-nome                   # um lab só (TARGET=run para executar)
+make lab LAB=020-nome                  # um lab só (TARGET=run para executar)
 make labs-vet                          # go vet em cada lab
-make lab-new NAME=01-nome              # cria um lab (GOVERSION=1.21 para pinar)
+make lab-new NAME=021-nome             # cria um lab (GOVERSION=1.21 para pinar)
 ```
 
 Os alvos de bench aceitam `BENCHTIME` (default `300ms`) e `COUNT` (default `6`):
@@ -179,10 +179,13 @@ Onde `exemplos/` é o trecho curado que cabe num slide, `labs/` é o exemplo que
 raiz — porque muitas vezes é justamente isso que ele demonstra. Cada lab tem
 `go.mod`, `Makefile` e `README.md` próprios, e o `Makefile` de `labs/` descobre
 os labs sozinho (`wildcard */go.mod`): criar a pasta basta, não há lista para
-manter. `make lab-new NAME=NN-slug [GOVERSION=1.21]` gera a partir de
+manter. `make lab-new NAME=CEE-slug [GOVERSION=1.21]` gera a partir de
 `labs/_template/` (que não é um lab — o `_` faz o Go ignorar a pasta).
 
-Duas regras herdadas de `exemplos/`: o diretório tem `NN-` e hífen, o pacote não;
+A numeração é `CEE-slug`: capítulo e exemplo dentro do capítulo — `020` é o
+primeiro exemplo do capítulo 2, `021` o segundo. O dígito extra existe para um
+capítulo crescer sem renumerar os outros. Fora isso, duas regras herdadas de
+`exemplos/`: o diretório tem número e hífen, o pacote não;
 e **o comentário de topo é obrigatório**. Labs são material de palco pelas mesmas
 razões — se um parecer ingênuo, errado ou "consertável", leia o comentário antes
 de mexer; provavelmente ele é o lado esquerdo de um slide. `labs/` **não**

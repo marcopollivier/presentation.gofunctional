@@ -51,12 +51,12 @@ labs:
 labs-vet:
 	@$(MAKE) --no-print-directory -C $(LABS_DIR) vet
 
-## lab: roda um lab só — make lab LAB=01-nome [TARGET=run]
+## lab: roda um lab só — make lab LAB=020-nome [TARGET=run]
 lab:
 	@$(MAKE) --no-print-directory -C $(LABS_DIR) lab LAB=$(LAB) $(if $(TARGET),TARGET=$(TARGET))
 
 ## lab-new: cria um lab a partir do template —
-## make lab-new NAME=01-nome [GOVERSION=1.21]
+## make lab-new NAME=021-nome [GOVERSION=1.21]
 lab-new:
 	@$(MAKE) --no-print-directory -C $(LABS_DIR) lab-new NAME=$(NAME) $(if $(GOVERSION),GOVERSION=$(GOVERSION))
 

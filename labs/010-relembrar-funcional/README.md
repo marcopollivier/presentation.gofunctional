@@ -1,4 +1,4 @@
-# Lab 01 — relembrar funcional
+# Lab 010 — relembrar funcional
 
 > **O ponto:** `f(x) = x² + 3` no papel é uma promessa: `f(2)` **é** 7, sempre,
 > e dá para riscar `f(2)` e escrever `7` no lugar sem mudar a conta. `f()` em Go
@@ -22,7 +22,7 @@ make all     # vet + test
 Ou, da raiz do repo:
 
 ```bash
-make lab LAB=01-relembrar-funcional TARGET=run
+make lab LAB=010-relembrar-funcional TARGET=run
 ```
 
 ## Notas

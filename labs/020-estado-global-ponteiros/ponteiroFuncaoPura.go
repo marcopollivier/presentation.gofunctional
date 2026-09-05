@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-// Lab 02 — ponteiro e função pura: o ponteiro não é o vilão; o que a função
+// Lab 020 — ponteiro e função pura: o ponteiro não é o vilão; o que a função
 // faz com ele é. Bloco 2.
 //
 // Len e Changer recebem exatamente a mesma coisa, um *string. A forma da
