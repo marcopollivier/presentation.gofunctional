@@ -15,7 +15,7 @@ uma dep que quebrou, **não derruba** o material da palestra.
 | # | Pasta | O ponto | Go | Bloco |
 |--|--|--|--|--|
 | 01 | [`01-relembrar-funcional`](01-relembrar-funcional/) | `f(x) = x² + 3` no papel vs em Go. A pura e a que suja um global devolvem o mesmo 7 e têm a **mesma assinatura** — o contrato não distingue as duas. | 1.27 | 1 |
-| 02 | [`02-estado-global-ponteiros`](02-estado-global-ponteiros/) | `Len(&nome)` pede um `*string` para só ler: ponteiro é permissão de escrita, e esta função pediu sem precisar. | **1.21** | 2 |
+| 02 | [`02-estado-global-ponteiros`](02-estado-global-ponteiros/) | `Len` e `Changer` recebem o mesmo `*string`: uma lê, a outra reescreve o chamador. O endereço não muda nos três momentos — e `Len(&nome)` responde 14 e depois 20. | **1.21** | 2 |
 
 ## Como rodar
 
