@@ -64,6 +64,11 @@ make bench                             # todos os benchmarks com alocação
 make bench-sort                        # só o benchmark de ordenação (achado central)
 make benchstat                         # roda N vezes e resume com benchstat
 make evolution                         # exemplos do submódulo (métodos genéricos)
+
+make labs                              # testes de todos os labs (exemplos reais)
+make lab LAB=01-nome                   # um lab só (TARGET=run para executar)
+make labs-vet                          # go vet em cada lab
+make lab-new NAME=01-nome              # cria um lab (GOVERSION=1.21 para pinar)
 ```
 
 Os alvos de bench aceitam `BENCHTIME` (default `300ms`) e `COUNT` (default `6`):
@@ -82,6 +87,11 @@ cd evolution-127 && go build ceiling_hkt.go
 `github.com/IBM/fp-go/v2`. **Submódulo `evolution-127/`:** também Go 1.27. Os
 dois módulos são separados: `go test ./...` na raiz **não** alcança
 `evolution-127/` — use `make evolution`.
+
+**Labs (`labs/`):** cada lab é mais um módulo isolado, com go.mod e versão de Go
+próprios. `go test ./...` e `make all` na raiz **não** alcançam nenhum deles —
+use `make labs`. É de propósito: um lab pinado no 1.21, ou com uma dep quebrada,
+não pode derrubar o material curado.
 
 A separação **não** é mais por versão (o 1.27 saiu em ago/2026 e a raiz subiu
 junto): `evolution-127/` redeclara `Option[T]`, `Some`, `None` e `HalfIfEven`
@@ -161,6 +171,22 @@ divergência é intencional — o número serve à narrativa, não ao compilador
   encadeáveis (`Some(n).Chain(f).Map(g).GetOrElse(d)`).
 - `ceiling_hkt.go` — não compila de propósito (`//go:build ignore`): por que
   Go tem monads concretos mas não tem higher-kinded types.
+
+**Labs (`labs/`) — exemplos reais, um módulo isolado por lab:**
+
+Onde `exemplos/` é o trecho curado que cabe num slide, `labs/` é o exemplo que
+**roda**: pode ter `main`, dependência externa e uma versão de Go diferente da
+raiz — porque muitas vezes é justamente isso que ele demonstra. Cada lab tem
+`go.mod`, `Makefile` e `README.md` próprios, e o `Makefile` de `labs/` descobre
+os labs sozinho (`wildcard */go.mod`): criar a pasta basta, não há lista para
+manter. `make lab-new NAME=NN-slug [GOVERSION=1.21]` gera a partir de
+`labs/_template/` (que não é um lab — o `_` faz o Go ignorar a pasta).
+
+Duas regras herdadas de `exemplos/`: o diretório tem `NN-` e hífen, o pacote não;
+e **o comentário de topo é obrigatório**. Labs são material de palco pelas mesmas
+razões — se um parecer ingênuo, errado ou "consertável", leia o comentário antes
+de mexer; provavelmente ele é o lado esquerdo de um slide. `labs/` **não**
+substitui `exemplos/`: as duas pastas coexistem e servem a coisas diferentes.
 
 **Docs:** `docs/` (esqueleto da palestra, paradigma-e-agentes, o-que-mudou,
 post-mortem do benchmark) e `experiments/agent-eval/` (protocolo do experimento

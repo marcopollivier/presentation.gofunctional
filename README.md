@@ -37,6 +37,8 @@ go vet ./...                       # análise estática
 make bench-sort                    # o benchmark central (ordenação)
 make benchstat                     # roda N vezes e resume (requer benchstat)
 make evolution                     # exemplos do submódulo (métodos genéricos, 1.27)
+make labs                          # os exemplos reais de labs/ (módulos isolados)
+make lab LAB=01-nome TARGET=run    # executa um lab
 ```
 
 Para ver o benchmark de 2023 (com o bug) e comparar com o de hoje:
@@ -66,6 +68,21 @@ O roteiro de estudo detalhado está em [`exemplos/README.md`](exemplos/README.md
 | [`08-agentes`](exemplos/08-agentes/) | Puro vs estado compartilhado (custo de revisão) | — |
 | [`evolution-127/option.go`](evolution-127/option.go) | `Option[T]` com **métodos genéricos** encadeáveis | 1.27 |
 | [`evolution-127/ceiling_hkt.go`](evolution-127/ceiling_hkt.go) | O teto: por que não há higher-kinded types | 1.27 |
+
+## Labs — os exemplos reais
+
+Enquanto `exemplos/` guarda o trecho curado que cabe num slide,
+[`labs/`](labs/) guarda o exemplo que **roda**: com `main`, com dependência
+externa, e possivelmente numa versão de Go diferente da raiz. Cada lab é um
+módulo Go isolado — por isso `go test ./...` na raiz não os alcança, e um lab
+pinado numa versão antiga nunca derruba o material da palestra.
+
+```bash
+make labs                                  # testa todos
+make lab-new NAME=01-nome GOVERSION=1.21   # cria um novo, pinado numa versão
+```
+
+O índice dos labs está em [`labs/README.md`](labs/README.md).
 
 ## Documentação
 
