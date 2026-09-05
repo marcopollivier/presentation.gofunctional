@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-// Lab 00 — "vamos relembrar funcional": a função matemática e a função Go,
+// Lab 01 — "vamos relembrar funcional": a função matemática e a função Go,
 // lado a lado. Bloco 1.
 //
 // O slide é f(x) = x² + 3, e f(2) = 7. Na matemática isso não é "devolve 7

@@ -14,7 +14,7 @@ uma dep que quebrou, **não derruba** o material da palestra.
 
 | # | Pasta | O ponto | Go | Bloco |
 |--|--|--|--|--|
-| 00 | [`00-relembrar-funcional`](00-relembrar-funcional/) | `f(x) = x² + 3` no papel vs em Go. A pura e a que suja um global devolvem o mesmo 7 e têm a **mesma assinatura** — o contrato não distingue as duas. | 1.27 | 1 |
+| 01 | [`01-relembrar-funcional`](01-relembrar-funcional/) | `f(x) = x² + 3` no papel vs em Go. A pura e a que suja um global devolvem o mesmo 7 e têm a **mesma assinatura** — o contrato não distingue as duas. | 1.27 | 1 |
 
 ## Como rodar
 

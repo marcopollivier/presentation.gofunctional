@@ -1,4 +1,4 @@
-# Lab 00-relembrar-funcional — Makefile local.
+# Lab 01-relembrar-funcional — Makefile local.
 #
 # Este lab é um módulo Go isolado: a versão de Go que vale aqui está no go.mod
 # desta pasta, não na da raiz. GOTOOLCHAIN=auto faz o Go baixar o toolchain
