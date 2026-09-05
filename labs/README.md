@@ -18,6 +18,7 @@ uma dep que quebrou, **não derruba** o material da palestra.
 | 020 | [`020-estado-global-ponteiros`](020-estado-global-ponteiros/) | `Len` e `Changer` recebem o mesmo `*string`: uma lê, a outra reescreve o chamador. O endereço não muda nos três momentos — e `Len(&nome)` responde 14 e depois 20. | **1.21** | 2 |
 | 021 | [`021-mutacao-nao-observavel`](021-mutacao-nao-observavel/) | Sem `&` nem `*` à vista, `SortedPrint` reescreve o slice do chamador. E as **duas** funções mutam — a diferença é a mutação escapar ou não. | **1.21** | 2 |
 | 022 | [`022-mutacao-nao-observavel-moderna`](022-mutacao-nao-observavel-moderna/) | O "depois": as três linhas do clone viraram `slices.Sorted(slices.Values(x))`. A versão que **não** muta virou a mais curta — o argumento ergonômico de 2023 caiu. | 1.27 | 2, 3 |
+| 030 | [`030-loopvar`](030-loopvar/) | O footgun de 12 anos: mesmo fonte, `3 3 3` na linguagem 1.21 e `0 1 2` na 1.22. Quem decide é a versão de linguagem, não o toolchain — e os dois testes provam os dois lados no mesmo pacote. | **1.21 / 1.22** | 3 |
 
 ## Como rodar
 
