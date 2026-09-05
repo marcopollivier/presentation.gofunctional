@@ -1,13 +1,12 @@
 # Lab 02-estado-global-ponteiros — Makefile local.
 #
-# Este lab é um módulo Go isolado e roda no Go 1.21, o Go de quando a palestra
-# nasceu.
+# Este lab é um módulo Go isolado e roda no Go 1.21.
 #
-# Aqui o GOTOOLCHAIN é PINADO, não `auto` como nos outros labs. O `auto` só
-# SOBE de versão: com `go 1.21` no go.mod e o 1.27 instalado, ele compilaria no
-# 1.27 em modo de linguagem 1.21 — parecido, mas não é a mesma coisa, e no
-# palco a diferença importa. A versão exata abaixo faz o Go baixar e usar o
-# toolchain 1.21 de verdade (uma vez; depois fica em cache).
+# O GOTOOLCHAIN aqui é PINADO, não `auto` como nos outros labs. O `auto` só
+# SOBE de versão: com `go 1.21` no go.mod e o 1.27 instalado, o lab compilaria
+# no 1.27 em modo de linguagem 1.21 — parecido, mas não é a mesma coisa, e a
+# promessa deste lab é rodar no 1.21 de verdade. A versão exata abaixo faz o Go
+# baixar o toolchain certo na primeira vez e usar o cache depois.
 #
 # `make version` mostra qual toolchain está de fato rodando.
 

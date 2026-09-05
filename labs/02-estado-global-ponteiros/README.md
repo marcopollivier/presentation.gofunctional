@@ -1,25 +1,20 @@
-# Lab 02 — estado compartilhado e ponteiros
+# Lab 02 — ponteiro e função pura
 
-> **O ponto:** o `*` que você **vê** não é o que machuca. `Len(&nome)` pede
-> permissão de escrita e nem usa — mas pelo menos o `&` avisa. `SortedPrint(xs)`
-> não tem um único `*` à vista e reordena o slice de quem chamou. A assinatura
-> `func([]int)` não dá nenhuma pista.
+> **O ponto:** `Len(&nome)` pede um `*string` para fazer uma coisa que não
+> precisa de ponteiro nenhum — ler o tamanho. Pedir ponteiro é pedir permissão
+> de escrita. Esta função pediu e não usa.
 
-**Go:** `1.21` — o Go de quando a palestra nasceu, e por isso pinado. O pacote
-`slices` já é stdlib aqui (`slices.Clone`, `slices.Sort` entraram no 1.21), mas
-o `slices.Sorted(slices.Values(x))` de hoje ainda não existe: isso é 1.23. A
-variável de loop também ainda é uma só por `for`, compartilhada — o que muda no
-1.22.
+**Go:** `1.21` — o Go de quando a palestra nasceu. Pinado no `Makefile`, não só
+declarado no `go.mod`: ver a nota no fim.
 
 **Bloco da palestra:** 2
 
 ## Como rodar
 
 ```bash
-make run       # a demo de palco
+make run       # imprime 14
 make version   # prova qual toolchain está rodando (deve dizer go1.21.13)
-make test      # testes
-make all       # vet + test
+make vet       # análise estática
 ```
 
 Ou, da raiz do repo:
@@ -30,31 +25,22 @@ make lab LAB=02-estado-global-ponteiros TARGET=run
 
 ## Notas
 
-A saída tem dois blocos. No primeiro, `Len` e `LenValue` devolvem **14** — o
-ponteiro não comprou nada: uma `string` já é passada como cabeçalho de 16 bytes,
-os caracteres não são copiados. O que ele comprou foi um estado a mais, `nil`,
-que vira panic (há um teste só para isso).
+O programa imprime `14` — o mesmo `14` que sairia de `len(nome)` direto. O
+ponteiro não comprou nada: uma `string` em Go já é passada como cabeçalho
+(ponteiro para os bytes + tamanho), 16 bytes, e os caracteres não são copiados.
+O argumento de performance não se sustenta.
 
-No segundo, `SortedPrintSafe` e `SortedPrint` imprimem **a mesma linha**,
-`[1 2 3]`. A diferença aparece só na linha seguinte, quando o programa mostra o
-slice do chamador: intacto num caso, reescrito no outro. É o contraste do
-slide — a saída não denuncia, o rastro sim.
+O que o `*string` comprou foi custo. A função ganhou permissão de escrever na
+variável do chamador — permissão que ela não usa, mas que quem lê a assinatura
+não tem como descartar. E ganhou um estado que a versão por valor não tem:
+`s == nil`, que aqui vira panic. Não existe `string` nil.
 
-Detalhes propositais:
+`&nome` no ponto de chamada é o aviso. Guarde essa imagem: no exemplo seguinte,
+com slice, a mesma permissão é entregue **sem nenhum `&` ou `*` à vista**.
 
-- **`Len` e `SortedPrint` são anti-exemplos.** Não os torne seguros: eles são o
-  lado esquerdo do slide. O par com `LenValue` e `SortedPrintSafe` é o conteúdo.
-- **`SortedPrintSafe` também muta** — só que um clone que nasce e morre dentro
-  dela. Pureza não é "nunca mutar", é a mutação não escapar.
-- **`sort.Ints` não é deprecado.** Do Go 1.22 em diante ele apenas chama
-  `slices.Sort`. Está aqui porque é o que se escrevia em 2023, e porque a
-  mutação é exatamente a mesma.
-- **`GOTOOLCHAIN` está pinado no `Makefile`**, não em `auto` como nos outros
-  labs: o `auto` só sobe de versão, então sem o pin o lab compilaria no 1.27 em
-  modo de linguagem 1.21.
+### Por que o toolchain está pinado
 
-## Relação com `exemplos/00-basico-sobre-ponteiros`
-
-O par `SortedPrint`/`SortedPrintSafe` é o mesmo daquele pacote — lá na versão
-curada, testada por `Example`, para o slide. Aqui ele **roda**, no Go de 2023, e
-vem acompanhado do caso do ponteiro explícito, que o exemplo curado não tem.
+`GOTOOLCHAIN=auto`, que os outros labs usam, só **sobe** de versão. Com
+`go 1.21` no `go.mod` e o 1.27 instalado na máquina, o lab compilaria no 1.27 em
+modo de linguagem 1.21 — parecido, mas não é a mesma coisa. O `Makefile` fixa
+`go1.21.13` para o lab rodar no 1.21 de verdade.
