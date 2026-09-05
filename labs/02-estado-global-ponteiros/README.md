@@ -30,7 +30,7 @@ make lab LAB=02-estado-global-ponteiros TARGET=run
 ```
 Momento 1: Endereco [0x14000122010] Nome [Marco Ollivier]
 Momento 2: Endereco [0x14000122010] Nome [Marco Ollivier] Tamanho [14]
-Momento 2: Endereco [0x14000122010] Nome [Marco Paulo Ollivier] Tamanho [20]
+Momento 3: Endereco [0x14000122010] Nome [Marco Paulo Ollivier] Tamanho [20]
 ```
 
 O endereço é **o mesmo nas três linhas**. É a coisa mais importante da tela, e a

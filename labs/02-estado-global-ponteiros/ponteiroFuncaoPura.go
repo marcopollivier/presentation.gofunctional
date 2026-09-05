@@ -33,10 +33,10 @@ func main() {
 	var nomeLen = Len(&nome)
 	fmt.Printf("Momento 2: Endereco [%p] Nome [%s] Tamanho [%d]\n", &nome, nome, nomeLen)
 
-	// Moment 3: uma função que altera a referência é chamada
+	// Momento 3: uma função que altera a referência é chamada
 	Changer(&nome)
 	nomeLen = Len(&nome)
-	fmt.Printf("Momento 2: Endereco [%p] Nome [%s] Tamanho [%d]\n", &nome, nome, nomeLen)
+	fmt.Printf("Momento 3: Endereco [%p] Nome [%s] Tamanho [%d]\n", &nome, nome, nomeLen)
 
 }
 
