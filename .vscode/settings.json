@@ -1,0 +1,25 @@
+{
+  // Ganhos de performance para este repo especificamente: raiz + submódulo
+  // evolution-127/ + N módulos isolados em labs/*, cada um com sua própria
+  // versão de Go (ver CLAUDE.md). Sem isso, o gopls tenta baixar toolchains
+  // e duplicar diagnóstico a cada save.
+  "go.toolsManagement.autoUpdate": false,
+  "go.buildOnSave": "off",
+  "go.vetOnSave": "off",
+  "go.lintOnSave": "off",
+  "go.testOnSave": false,
+  "gopls": {
+    "build.env": {
+      // Evita download automático de toolchain ao abrir um lab pinado numa
+      // versão de Go diferente da raiz (ex.: GOVERSION=1.21 em make lab-new).
+      "GOTOOLCHAIN": "local"
+    }
+  },
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/bench.txt": true
+  },
+  "search.exclude": {
+    "**/bench.txt": true
+  }
+}
