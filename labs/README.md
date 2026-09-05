@@ -15,6 +15,7 @@ uma dep que quebrou, **não derruba** o material da palestra.
 | # | Pasta | O ponto | Go | Bloco |
 |--|--|--|--|--|
 | 01 | [`01-relembrar-funcional`](01-relembrar-funcional/) | `f(x) = x² + 3` no papel vs em Go. A pura e a que suja um global devolvem o mesmo 7 e têm a **mesma assinatura** — o contrato não distingue as duas. | 1.27 | 1 |
+| 02 | [`02-estado-global-ponteiros`](02-estado-global-ponteiros/) | O `*` que você vê não é o que machuca: `Len(&nome)` avisa e nem precisava; `SortedPrint(xs)` não avisa nada e reescreve o slice do chamador. | **1.21** | 2 |
 
 ## Como rodar
 
